@@ -11,5 +11,21 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    <div>
+      <p id='console'></p>
+    </div>
+    <script>
+    const { ipcRenderer } = require('electron');
+    console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+
+ipcRenderer.on('asynchronous-reply', (event, arg) => {
+  console.log(arg) // prints "pong"
+})
+ipcRenderer.send('asynchronous-message', 'ping')
+
+const Console = require('../js/Console.js');
+const cc = new Console();
+cc.run(data => {document.getElementById('console').innerHTML = data;});
+    </script>
   </body>
 </html>

@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require('electron')
+const Console = require('./src/js/Console.js');
+const cc = new Console();
+//cc.run();
 
 function createWindow () {
   // Create the browser window.
@@ -42,3 +45,16 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+// In main process.
+const { ipcMain } = require('electron')
+ipcMain.on('asynchronous-message', (event, arg) => {
+  console.log(arg) // prints "ping"
+  event.reply('asynchronous-reply', 'pong')
+})
+
+ipcMain.on('synchronous-message', (event, arg) => {
+  console.log(arg) // prints "ping"
+  event.returnValue = 'pong'
+})
