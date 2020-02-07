@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OWET</title>
+        <style>
+            #toppbar {
+                background-color: black;
+                height: 25px;
+                width: 100%;
+                display: block;
+                position: fixed;
+                margin: 0px;
+                top: 0px;
+                left: 0px;
+            }
+            body {
+                background-color: teal;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id='toppbar'>
+
+        </div>
+        <script>
+            const { Menu, MenuItem } = require('electron').remote
+            const customTitlebar = require('custom-electron-titlebar');
+ 
+ let titlebar = new customTitlebar.Titlebar({
+     backgroundColor: customTitlebar.Color.fromHex('#444'),
+    drag: true
+ });
+
+
+
+const menu = new Menu();
+menu.append(new MenuItem({
+    label: 'Item 1',
+    submenu: [
+        {
+            label: 'Subitem 1',
+            click: () => console.log('Click on subitem 1')
+        },
+        {
+            type: 'separator'
+        }
+    ]
+}));
+ 
+menu.append(new MenuItem({
+    label: 'Item 2',
+    submenu: [
+        {
+            label: 'Subitem checkbox',
+            type: 'checkbox',
+            checked: true
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: 'Subitem with submenu',
+            submenu: [
+                {
+                    label: 'Submenu &item 1',
+                    accelerator: 'Ctrl+T'
+                }
+            ]
+        }
+    ]
+}));
+ 
+titlebar.updateMenu(menu);
+        </script>
+    </body>
+</html>
