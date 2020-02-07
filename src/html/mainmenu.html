@@ -3,25 +3,49 @@
     <head>
         <title>OWET</title>
         <style>
-            #toppbar {
-                background-color: black;
-                height: 25px;
-                width: 100%;
-                display: block;
-                position: fixed;
-                margin: 0px;
-                top: 0px;
-                left: 0px;
-            }
             body {
                 background-color: teal;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            .menu-container {
+                width: 400px;
+                height: 500px;
+                background-color: blueviolet;
+                margin: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            .button {
+                display: block;
+                width: 150px;
+                padding-left: 0px;
+                padding-right: 0px;
+                background-color: orangered;
+                border-radius: 5px;
+                border-style:ridge;
+                border-width: 2px;
+                border-color: brown;
+                margin: auto;
+                transition-duration: 0.5s;
+            }
+
+            .button:hover {
+                width: 240px;
+                padding-left: 45px;
+                padding-right: 45px;
+                font-size: 120%;
             }
         </style>
 
     </head>
     <body>
-        <div id='toppbar'>
+        <div class='menu-container'>
+            <h1>OWET 2</h1>
+            <a class='button' href="datatoolgui.html">Datatool GUI</a>
 
         </div>
         <script>
