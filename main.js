@@ -8,18 +8,21 @@ function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    'minHeight': 600,
+    'minWidth': 800,
     webPreferences: {
       nodeIntegration: true
     },
     frame: false
   })
 
+  
   // and load the index.html of the app.
   win.loadFile('./src/html/mainmenu.html')
   win.removeMenu()
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

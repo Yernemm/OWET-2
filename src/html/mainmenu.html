@@ -1,102 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>OWET</title>
-        <style>
-            body {
-                background-color: teal;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-            }
-            .menu-container {
-                width: 400px;
-                height: 500px;
-                background-color: blueviolet;
-                margin: auto;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                text-align: center;
-            }
-            .button {
-                display: block;
-                width: 150px;
-                padding-left: 0px;
-                padding-right: 0px;
-                background-color: orangered;
-                border-radius: 5px;
-                border-style:ridge;
-                border-width: 2px;
-                border-color: brown;
-                margin: auto;
-                transition-duration: 0.5s;
-            }
-
-            .button:hover {
-                width: 240px;
-                padding-left: 45px;
-                padding-right: 45px;
-                font-size: 120%;
-            }
-        </style>
+        <title>Overwatch Extraction Toolkit 2</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/nohighlight.css">
 
     </head>
     <body>
         <div class='menu-container'>
-            <h1>OWET 2</h1>
-            <a class='button' href="datatoolgui.html">Datatool GUI</a>
+            <img src='../img/OWET-2 Title.png' class="titleImage"/>
+            <div class='buttonContainer'>
+                <a class='button' href="datatoolgui.html">File Extraction: Datatool GUI</a>
+            </div>
+            <div class='buttonContainer'>
+                <a class='button' href="datatoolgui.html">File Conversion: Conversion Tools</a>
+            </div>
+            <div class='buttonContainer'>
+                <a class='button' href="datatoolgui.html">Other Tools</a>
+            </div>
+            
 
         </div>
-        <script>
-            const { Menu, MenuItem } = require('electron').remote
-            const customTitlebar = require('custom-electron-titlebar');
- 
- let titlebar = new customTitlebar.Titlebar({
-     backgroundColor: customTitlebar.Color.fromHex('#444'),
-    drag: true
- });
-
-
-
-const menu = new Menu();
-menu.append(new MenuItem({
-    label: 'Item 1',
-    submenu: [
-        {
-            label: 'Subitem 1',
-            click: () => console.log('Click on subitem 1')
-        },
-        {
-            type: 'separator'
-        }
-    ]
-}));
- 
-menu.append(new MenuItem({
-    label: 'Item 2',
-    submenu: [
-        {
-            label: 'Subitem checkbox',
-            type: 'checkbox',
-            checked: true
-        },
-        {
-            type: 'separator'
-        },
-        {
-            label: 'Subitem with submenu',
-            submenu: [
-                {
-                    label: 'Submenu &item 1',
-                    accelerator: 'Ctrl+T'
-                }
-            ]
-        }
-    ]
-}));
- 
-titlebar.updateMenu(menu);
-        </script>
+        <script src='../js/titlebar.js'></script>
     </body>
 </html>
