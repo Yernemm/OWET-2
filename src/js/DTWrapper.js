@@ -7,20 +7,30 @@ class DTWrapper {
         this.owPath = owPath;
         this.consoleUpdate = consoleUpdate;
         this.done = done;
+        this.queueRunning = false;
     }
 
     addToQueue(cmd){
-        let fullcmd = "cd \"" + this.dtPath + "\" & datatool \"" + this.owPath + "\" " + cmd;
-        this.cmdQueue.push(new DTCmd(fullcmd));
+        let fullcmd = '';
+        if(cmd == 'help')
+            fullcmd = "cd \"" + this.dtPath + "\" & datatool help";
+        else
+            fullcmd = "cd \"" + this.dtPath + "\" & datatool \"" + this.owPath + "\" " + cmd;
+        this.cmdQueue.push(new DTCmd(fullcmd, cmd));
     }
 
     runQueue(){
-        let cmd = this.cmdQueue.shift(); 
-        cmd.run(this.consoleUpdate).then(obj => {
-            this.done(obj);
-            if(this.cmdQueue.length > 0)
-                this.runQueue();
-        })
+        if(!this.queueRunning && this.cmdQueue.length > 0){
+            this.queueRunning = true;
+            let cmd = this.cmdQueue[0]
+            cmd.run(this.consoleUpdate).then(obj => {
+                this.cmdQueue.shift();
+                this.done(obj);
+                this.queueRunning = false;
+                if(this.cmdQueue.length > 0)
+                    this.runQueue();
+            })
+        }
     }
 
 

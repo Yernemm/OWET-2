@@ -15,62 +15,48 @@ console.log("ummm sonny")
 var logStream;
 
 
-var consoleFull = "";
+logStream = fs.createWriteStream(logFile, {flags:'a'});
 
-var consoleData = "";
-var consoleDataLast = "";
+let dt;
+
+
 
 ipcMain.on('runConsoleCmd', (event, args) => {
-    logStream = fs.createWriteStream(logFile, {flags:'a'});
-    let dt = new DTWrapper(dtpath, owpath, (data)=>{
-        consoleFull = data; 
+    dt.addToQueue(args.cmd);
+    dt.runQueue();
+    event.sender.send('updateQueue', {data: queueHtml()});
+});
+
+
+ipcMain.on('DTLoaded', (event,args)=>{
+    console.log("DT Loaded")
+    dt = new DTWrapper(dtpath, owpath, (data)=>{
         event.sender.send('updateConsole', {data: data});
         logStream.write(data);
     }, (o) => {
-        consoleFull += `\nExited with code ${o.code}`
-        logStream.end();
+        event.sender.send('updateConsole', {data: `\nExited with code ${o.code}\n\n`});
+        logStream.write(`\nExited with code ${o.code}`);
+        event.sender.send('updateQueue', {data: queueHtml()});
     });
-    dt.addToQueue(args.cmd);
-    dt.runQueue();
-});
 
-function trimConsole(){
-    const max = 100000;
-    if(consoleFull.length > max){
-        consoleData = consoleFull.substr(consoleFull.length - max);
-    }else{
-        consoleData = consoleFull;
-    }
-}
-
-ipcMain.on('DTLoaded', (event,args)=>{
-    setInterval(()=>{
-        trimConsole();
-        if(consoleData != consoleDataLast){
-            //event.sender.send('updateConsole', {data: consoleData});
-            consoleDataLast = consoleData;
-        }
-        
-    },25);
 })
 
+function queueHtml(){
+    let h = ""
+    h += "<ol>"
+    dt.cmdQueue.forEach(cmd=>{
+        h+= `<li>${cmd.cmdName}</li>`
+    })
+    h+= "</ol>"
+    return h;
+}
 
 
 
 function runAtMain(){
 
-
-
-
-//document.getElementById("console").innerHTML = data
-
-/*
-window.setInterval(()=>{
-    //document.getElementById('console').innerHTML = consoleData;
-}, 1000);
-*/
 }
 
-
+//logStream.end();
 
 module.exports = {runAtMain};
