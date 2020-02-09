@@ -1,10 +1,11 @@
 let DTCmd =require('./DTCmd.js');
 class DTWrapper {
-    constructor(dtPath, owPath, consoleUpdate, done)
+    constructor(dtPath, owPath, outPath, consoleUpdate, done)
     {
         this.cmdQueue = [];
         this.dtPath = dtPath;
         this.owPath = owPath;
+        this.outPath = outPath;
         this.consoleUpdate = consoleUpdate;
         this.done = done;
         this.queueRunning = false;
@@ -15,7 +16,7 @@ class DTWrapper {
         if(cmd == 'help')
             fullcmd = "cd \"" + this.dtPath + "\" & datatool help";
         else
-            fullcmd = "cd \"" + this.dtPath + "\" & datatool \"" + this.owPath + "\" " + cmd;
+            fullcmd = "cd \"" + this.dtPath + "\" & datatool \"" + this.owPath + "\" " + cmd + ` "${this.outPath}"`;
         this.cmdQueue.push(new DTCmd(fullcmd, cmd));
     }
 

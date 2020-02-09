@@ -5,6 +5,7 @@ let DTCmd =require('./DTCmd.js');
 const { ipcMain } = require('electron')
 const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
 const dtpath = getAppDataPath("Yernemm/OWET2/datatool");
+const outpath = getAppDataPath("Yernemm/OWET2/extracted");
 
 const logFile = getAppDataPath("Yernemm/OWET2/logs") + `/log-${new Date().getTime()}.txt`;
 
@@ -30,7 +31,7 @@ ipcMain.on('runConsoleCmd', (event, args) => {
 
 ipcMain.on('DTLoaded', (event,args)=>{
     console.log("DT Loaded")
-    dt = new DTWrapper(dtpath, owpath, (data)=>{
+    dt = new DTWrapper(dtpath, owpath, outpath, (data)=>{
         event.sender.send('updateConsole', {data: data});
         logStream.write(data);
     }, (o) => {
