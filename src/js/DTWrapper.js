@@ -1,21 +1,23 @@
-import DTCmd from './DTCmd.js';
-import Console from './Console.js';
-
+let DTCmd =require('./DTCmd.js');
 class DTWrapper {
-    constructor(dtPath, owPath)
+    constructor(dtPath, owPath, consoleUpdate, done)
     {
         this.cmdQueue = [];
         this.dtPath = dtPath;
         this.owPath = owPath;
+        this.consoleUpdate = consoleUpdate;
+        this.done = done;
     }
 
     addToQueue(cmd){
-        this.cmdQueue.push(cmd);
+        let fullcmd = "cd \"" + this.dtPath + "\" & datatool \"" + this.owPath + "\" " + cmd;
+        this.cmdQueue.push(new DTCmd(fullcmd));
     }
 
     runQueue(){
         let cmd = this.cmdQueue.shift(); 
-        cmd.run().then(obj => {
+        cmd.run(this.consoleUpdate).then(obj => {
+            this.done(obj);
             if(this.cmdQueue.length > 0)
                 this.runQueue();
         })
@@ -25,4 +27,4 @@ class DTWrapper {
 
 }
 
-export default DTWrapper;
+module.exports = DTWrapper;

@@ -1,0 +1,90 @@
+.dtColContainer {
+    width: 100%;
+    height: calc(100vh - 100px);
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    position: fixed;
+    color: #e3e5e8;
+    text-align: center;
+}
+
+.dtColumn {
+    top: 0px;
+
+
+    display: block;
+    height: 100%;
+}
+
+.dtInnerColumn {
+    margin-left: 1%;
+
+    display: inline-block;
+    height: auto;
+
+    background-color: #212329;
+    border-color: #163f64;
+    border-width: 1px;
+    border-style:solid;
+    overflow: scroll;
+}
+
+.dtCol1 {
+    width: 98%;
+    height: calc(100vh - 110px);
+}
+
+.dtCol1c {
+    width: 32%;
+
+    float: left;
+    margin-left: 1%;
+}
+
+.dtCol23 {
+    width: 66%;
+
+    float: right;
+    padding-right: 1%;
+}
+
+
+.dtCol2, .dtCol3 {
+    width: 74%;
+    height: auto;
+    margin-bottom: 5px;
+    height: calc(100vh - 110px);
+}
+
+.dtCol2 {
+    width: 22%;
+}
+
+.dtColContainer {
+    width: 100%;
+}
+
+@media only screen and (max-width: 999px) {
+    .dtCol1c, .dtCol23  { 
+        width: 48%;
+    }
+
+    .dtCol2, .dtCol3  {
+        width: 100%;
+        height: calc(50vh - 60px);
+    }
+
+  }
+
+  .console {
+    font-family: Courier, 'New Courier', monospace;
+    font-size: 12px;
+    text-align: left;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    -webkit-user-select: text;
+    user-select: text;
+  }

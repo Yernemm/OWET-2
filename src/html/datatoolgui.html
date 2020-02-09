@@ -4,23 +4,37 @@
         <title>OWET 2 - DataTool GUI</title>
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/nohighlight.css">
+        <link rel="stylesheet" href="../css/datatoolgui.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
     <body>
-        <div class=''>
-            <img src='../img/OWET-2 Title.png' class="titleImage"/>
-            <div class='buttonContainer'>
-                <a class='button' href="datatoolgui.html">File Extraction: Datatool GUI</a>
+        <div class='dtColContainer'>
+
+            <div class='dtCol1c dtColumn'>
+            <div class='dtCol1 dtInnerColumn'>
+
+                <p>Options</p>
+                <div class='buttonContainerStatic'>
+                        <a class='button' onClick="stringsBtn()">Strings</a>
+                    </div>    
             </div>
-            <div class='buttonContainer'>
-                <a class='button' href="datatoolgui.html">File Conversion: Conversion Tools</a>
             </div>
-            <div class='buttonContainer'>
-                <a class='button' href="datatoolgui.html">Other Tools</a>
+
+            <div class="dtCol23 dtColumn">
+                    <div class='dtCol2 dtInnerColumn'>
+
+                            <p>Queue</p>
+                        </div>
+                        <div id='consoleWrapper' class='dtCol3 dtInnerColumn'>
+
+                            <p>Output</p>
+                            <div><pre class="console" id="console"></pre></div>
+                        </div>
             </div>
-            
 
         </div>
         <script src='../js/titlebar.js'></script>
+        <script src='../js/DTGUI-renderer.js'></script>
     </body>
 </html>

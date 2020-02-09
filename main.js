@@ -6,8 +6,8 @@ const cc = new Console();
 function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     'minHeight': 600,
     'minWidth': 800,
     webPreferences: {
@@ -18,7 +18,7 @@ function createWindow () {
 
   
   // and load the index.html of the app.
-  win.loadFile('./src/html/mainmenu.html')
+  win.loadFile('./src/html/datatoolgui.html')
   win.removeMenu()
 
   // Open the DevTools.
@@ -62,3 +62,7 @@ ipcMain.on('synchronous-message', (event, arg) => {
   console.log(arg) // prints "ping"
   event.returnValue = 'pong'
 })
+
+
+
+require('./src/js/DTGUI-main.js').runAtMain();

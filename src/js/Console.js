@@ -5,7 +5,8 @@ class Console {
 
     }
 
-    run(command, onData = (d) => console.log(d), onDone = (a) => {}, stackData = true) {
+    run(command, onData = (d) => console.log(d), onDone = (a) => {}, stackData = false) {
+      console.log(command)
         const child = spawn(command, {shell: true});
 
     // use child.stdout.setEncoding('utf8'); if you want text chunks
@@ -14,12 +15,15 @@ class Console {
     child.stdout.on('data', (chunk) => {
       // data from standard output is here as buffers
     
-      totalOut += chunk + `<br />`
+      totalOut += chunk;
       if(stackData)
       onData(totalOut);
       else
-      onDat(chunk);
+      onData(chunk);
       
+      console.log(chunk)
+
+
     });
 
 // since these are streams, you can pipe them elsewhere

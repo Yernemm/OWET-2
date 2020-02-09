@@ -1,4 +1,4 @@
-import Console from './Console.js';
+const Console =require('./Console.js');
 /**
  * A single DT Command.
  */
@@ -14,10 +14,10 @@ class DTCmd {
             let dataCount = '';
             function onDataPass(data) {
                 dataCount = data;
-                onData(data);
+                onData(dataCount);
             }
             //TO-DO: reject promise if console has an error.
-            c.run(this.cmd,onDataPass(data),(code)=>{resolve({code, dataCount})})
+            c.run(this.cmd,onDataPass,(code)=>{resolve({code, dataCount})})
         })
     }
 
