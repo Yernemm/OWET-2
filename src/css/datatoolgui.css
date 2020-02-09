@@ -87,4 +87,12 @@
     word-wrap: break-word;
     -webkit-user-select: text;
     user-select: text;
+    height: calc(100% - 100px);
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    background-color: inherit;
+    color: inherit;
+    border-color: inherit;
+    border-width: 0px;
   }

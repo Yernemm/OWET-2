@@ -9,10 +9,10 @@ let consoleElement = document.getElementById("console")
 let consoleWrapper = document.getElementById("consoleWrapper");
 let queueList = document.getElementById("queueList");
 ipcRenderer.on('updateConsole', (event, args) =>{
-    const maxChars = 250000;
+    //const maxChars = 250000;
     consoleElement.innerHTML += args.data;
-    consoleElement.innerHTML = consoleElement.innerHTML.substr(consoleElement.innerHTML.length - maxChars);
-    consoleWrapper.scrollTop = consoleWrapper.scrollHeight;
+    //consoleElement.innerHTML = consoleElement.innerHTML.substr(consoleElement.innerHTML.length - maxChars);
+    consoleElement.scrollTop = consoleElement.scrollHeight;
 })
 
 ipcRenderer.on('updateQueue', (event, args) =>{
