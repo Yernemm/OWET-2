@@ -11,10 +11,19 @@ class Console {
 
     // use child.stdout.setEncoding('utf8'); if you want text chunks
     child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
     let totalOut = '';
     child.stdout.on('data', (chunk) => {
       // data from standard output is here as buffers
-    
+      sendData(chunk);
+    });
+
+    child.stderr.on('data', (chunk) => {
+      // data from standard output is here as buffers
+      sendData(chunk);
+    });
+
+    function sendData(chunk) {
       totalOut += chunk;
       if(stackData)
       onData(totalOut);
@@ -22,9 +31,7 @@ class Console {
       onData(chunk);
       
       console.log(chunk)
-
-
-    });
+    }
 
 // since these are streams, you can pipe them elsewhere
 //child.stderr.pipe(dest);
