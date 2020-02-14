@@ -9,11 +9,13 @@ let consoleElement = document.getElementById("console")
 let consoleWrapper = document.getElementById("consoleWrapper");
 let queueList = document.getElementById("queueList");
 let btnContainer = document.getElementById('btnContainer');
+let consoleText = '';
 ipcRenderer.on('updateConsole', (event, args) =>{
-    const maxChars = 1000;
-    consoleElement.innerHTML += args.data;
-    consoleElement.innerHTML = consoleElement.innerHTML.substr(consoleElement.innerHTML.length - maxChars);
-    consoleElement.scrollTop = consoleElement.scrollHeight;
+    const maxChars =150000;
+    consoleText+= args.data;
+    consoleText = consoleText.substr(consoleText.length - maxChars);
+    consoleElement.textContent = consoleText
+    //consoleElement.scrollTop = consoleElement.scrollHeight;
 })
 
 ipcRenderer.on('updateQueue', (event, args) =>{
