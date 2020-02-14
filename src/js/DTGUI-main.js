@@ -9,6 +9,8 @@ const outpath = getAppDataPath("Yernemm/OWET2/extracted");
 
 const logFile = getAppDataPath("Yernemm/OWET2/logs") + `/log-${new Date().getTime()}.txt`;
 
+const DTData = require('./DTData.js');
+
 console.log("ummm sonny")
 
 ///
@@ -39,6 +41,17 @@ ipcMain.on('DTLoaded', (event,args)=>{
         logStream.write(`\nExited with code ${o.code}`);
         event.sender.send('updateQueue', {data: queueHtml()});
     });
+
+    let dtd = new DTData(dtpath, owpath);
+    dtd.generateToolInfo().then(json => {
+      json.ToolGroups.ListFlags.Tools.forEach(tool=>{
+          event.sender.send('addBtn', {
+              cmd: tool.Keyword,
+              text: tool.Description
+          })
+      })
+    })
+
 
 })
 

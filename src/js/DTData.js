@@ -8,16 +8,18 @@ class DTData {
     }
 
     generateToolInfo() {
-        let c = new Console();
-        let cmd = `cd "${this.dtPath}" & datatool util-tool-info`
-        let data = ''
-        c.run(cmd,(out,err)
-        => {data+= err},
-        done()
-        )
-        function done(){
+        return new Promise((resolve,reject) =>{
+
+            let c = new Console();
+            let cmd = `cd "${this.dtPath}" & datatool "${this.owPath}" util-tool-info`
+            let data = ''
+            let i = 0;
+            c.run(cmd,(out,err) => {data+= err ? err: ""},
+            (code)=>{resolve(JSON.parse(data))}
+            )
             
-        }
+
+        })
     }
 }
 

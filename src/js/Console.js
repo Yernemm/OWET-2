@@ -38,7 +38,7 @@ class Console {
       }
 
       
-      console.log(chunk)
+      //console.log(chunk)
     }
 
 // since these are streams, you can pipe them elsewhere
