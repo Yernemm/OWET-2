@@ -13,7 +13,8 @@ class DTCmd {
         return new Promise((resolve, reject) => {
             let c = new Console();
             let dataCount = '';
-            function onDataPass(data) {
+            function onDataPass(out,err) {
+                let data = out ? out : err;
                 dataCount = data;
                 onData(dataCount);
             }

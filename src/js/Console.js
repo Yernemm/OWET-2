@@ -5,7 +5,7 @@ class Console {
 
     }
 
-    run(command, onData = (d) => console.log(d), onDone = (a) => {}, stackData = false) {
+    run(command, onData = (out, err) => console.log(d), onDone = (a) => {}, stackData = false) {
       console.log(command)
         const child = spawn(command, {shell: true});
 
@@ -15,20 +15,28 @@ class Console {
     let totalOut = '';
     child.stdout.on('data', (chunk) => {
       // data from standard output is here as buffers
-      sendData(chunk);
+      sendData(chunk, false);
     });
 
     child.stderr.on('data', (chunk) => {
       // data from standard output is here as buffers
-      sendData(chunk);
+      sendData(chunk, true);
     });
 
-    function sendData(chunk) {
+    function sendData(chunk, isErr) {
       totalOut += chunk;
-      if(stackData)
-      onData(totalOut);
-      else
-      onData(chunk);
+      if(isErr){
+        if(stackData)
+        onData(null,totalOut);
+        else
+        onData(null,chunk);
+      }else{
+        if(stackData)
+        onData(totalOut,null);
+        else
+        onData(chunk,null);
+      }
+
       
       console.log(chunk)
     }

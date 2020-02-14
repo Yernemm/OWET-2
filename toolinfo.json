@@ -1,0 +1,1347 @@
+{
+    "Version": {
+      "DataTool": "1.44.0.862",
+      "TankLib": "1.44.0.862",
+      "TACTLib": "1.0.0.0"
+    },
+    "ToolFlags": {
+      "Flags": [
+        {
+          "Name": "directory",
+          "HelpText": "Overwatch Directory",
+          "Required": true,
+          "TakesValue": true,
+          "ValueType": "String",
+          "IsPositional": true,
+          "Position": 0,
+          "Choices": null
+        },
+        {
+          "Name": "mode",
+          "HelpText": "Extraction Mode",
+          "Required": true,
+          "TakesValue": true,
+          "ValueType": "String",
+          "IsPositional": true,
+          "Position": 1,
+          "Choices": null
+        },
+        {
+          "Name": "language",
+          "HelpText": "Language to load",
+          "Required": false,
+          "TakesValue": true,
+          "ValueType": "String",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": [
+            "deDE",
+            "enUS",
+            "esES",
+            "esMX",
+            "frFR",
+            "itIT",
+            "jaJP",
+            "koKR",
+            "plPL",
+            "ptBR",
+            "ruRU",
+            "zhCN",
+            "zhTW"
+          ]
+        },
+        {
+          "Name": "speech-language",
+          "HelpText": "Speech Language to load",
+          "Required": false,
+          "TakesValue": true,
+          "ValueType": "String",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": [
+            "deDE",
+            "enUS",
+            "esES",
+            "esMX",
+            "frFR",
+            "itIT",
+            "jaJP",
+            "koKR",
+            "plPL",
+            "ptBR",
+            "ruRU",
+            "zhCN",
+            "zhTW"
+          ]
+        },
+        {
+          "Name": "graceful-exit",
+          "HelpText": "When enabled don't crash on invalid CMF Encryption",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "cache",
+          "HelpText": "Cache Index files from CDN",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "cache-data",
+          "HelpText": "Cache Data files from CDN",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "validate-cache",
+          "HelpText": "Validate files from CDN",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "quiet",
+          "HelpText": "Suppress majority of output messages",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "skip-keys",
+          "HelpText": "Skip key detection",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "expert",
+          "HelpText": "Output more asset information",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "rcn",
+          "HelpText": "use (R)CN? CMF",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "deduplicate-textures",
+          "HelpText": "Re-use textures from other models",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "scratchdb",
+          "HelpText": "Directory for persistent database storage for deduplication info",
+          "Required": false,
+          "TakesValue": true,
+          "ValueType": "String",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "args-save",
+          "HelpText": "Save current arguments",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "args-reset",
+          "HelpText": "Reset program arguments",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "args-delete",
+          "HelpText": "Delete saved program arguments",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        },
+        {
+          "Name": "no-names",
+          "HelpText": "Don't use names for textures",
+          "Required": false,
+          "TakesValue": false,
+          "ValueType": "Boolean",
+          "IsPositional": false,
+          "Position": -1,
+          "Choices": null
+        }
+      ],
+      "Name": "ToolFlags",
+      "Parent": null
+    },
+    "ToolGroups": {
+      "ListFlags": {
+        "Flags": {
+          "Flags": [
+            {
+              "Name": "json",
+              "HelpText": "Output JSON to stderr",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "out",
+              "HelpText": "Output JSON file",
+              "Required": false,
+              "TakesValue": true,
+              "ValueType": "String",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            }
+          ],
+          "Name": "ListFlags",
+          "Parent": null
+        },
+        "Tools": [
+          {
+            "Name": "",
+            "Keyword": "list-achievements",
+            "Description": "List achievements",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-heroes",
+            "Description": "List heroes",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-general-unlocks",
+            "Description": "List general unlocks",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-unlocks",
+            "Description": "List hero unlocks",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-highlights",
+            "Description": "List user highlights",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-lootbox",
+            "Description": "List lootboxes",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-keys",
+            "Description": "List resource keys",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-maps",
+            "Description": "List maps",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-subtitles",
+            "Description": "List subtitles",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "list-subtitles-real",
+            "Description": "List subtitles (from audio data)",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          }
+        ]
+      },
+      "ExtractMapEnvFlags": {
+        "Flags": {
+          "Flags": [
+            {
+              "Name": "skip-map-env-sound",
+              "HelpText": "Skip map Environment sound extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-lut",
+              "HelpText": "Skip map Environment lut extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-blend",
+              "HelpText": "Skip map Environment blend cubemap extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-ground",
+              "HelpText": "Skip map Environment ground cubemap extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-sky",
+              "HelpText": "Skip map Environment sky cubemap extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-skybox",
+              "HelpText": "Skip map Environment skybox extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-map-env-entity",
+              "HelpText": "Skip map Environment entity extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            }
+          ],
+          "Name": "ExtractMapEnvFlags",
+          "Parent": "ExtractFlags"
+        },
+        "Tools": [
+          {
+            "Name": "",
+            "Keyword": "extract-everything",
+            "Description": "Extract everything",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-map-envs",
+            "Description": "Extract map environment data",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          }
+        ]
+      },
+      "ExtractFlags": {
+        "Flags": {
+          "Flags": [
+            {
+              "Name": "out-path",
+              "HelpText": "Output path",
+              "Required": true,
+              "TakesValue": true,
+              "ValueType": "String",
+              "IsPositional": true,
+              "Position": 2,
+              "Choices": null
+            },
+            {
+              "Name": "convert-textures-type",
+              "HelpText": "Texture output type",
+              "Required": false,
+              "TakesValue": true,
+              "ValueType": "String",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": [
+                "dds",
+                "tif",
+                "tga",
+                "png",
+                "jpg",
+                "hdr"
+              ]
+            },
+            {
+              "Name": "convert-lossless-textures",
+              "HelpText": "Output lossless textures (if converted)",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "raw-textures",
+              "HelpText": "Do not convert textures",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "raw-sound",
+              "HelpText": "Do not convert sounds",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "raw-models",
+              "HelpText": "Do not convert models",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "raw-animations",
+              "HelpText": "Do not convert animations",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-textures",
+              "HelpText": "Skip texture extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-sound",
+              "HelpText": "Skip sound extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-models",
+              "HelpText": "Skip model extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "skip-animations",
+              "HelpText": "Skip animation extraction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "extract-refpose",
+              "HelpText": "Extract skeleton refposes",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "raw",
+              "HelpText": "Skip all conversion",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "lod",
+              "HelpText": "Force extracted model LOD",
+              "Required": false,
+              "TakesValue": true,
+              "ValueType": "Byte",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "scale-anims",
+              "HelpText": "set to true for Blender 2.79, false for Maya and when Blender SEAnim tools are updated for 2.8",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "flatten",
+              "HelpText": "Flatten directory structure",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "force-dds-multisurface",
+              "HelpText": "Save multisurface textures as DDS",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "sheet-multisurface",
+              "HelpText": "Save multisurface textures as one large image, tiled across in the Y (vertical) direction",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "extract-mips",
+              "HelpText": "Extract mip files",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            },
+            {
+              "Name": "subtitles-with-sounds",
+              "HelpText": "Extract subtitles alongside voicelines",
+              "Required": false,
+              "TakesValue": false,
+              "ValueType": "Boolean",
+              "IsPositional": false,
+              "Position": -1,
+              "Choices": null
+            }
+          ],
+          "Name": "ExtractFlags",
+          "Parent": null
+        },
+        "Tools": [
+          {
+            "Name": "",
+            "Keyword": "extract-hero-voice-better",
+            "Description": "Extracts hero voicelines but groups them a bit better.",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-abilities",
+            "Description": "Extract abilities",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-all",
+            "Description": "Extract everything (rip storage space)",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-hero-convo",
+            "Description": "Extract hero voice conversations",
+            "SupportsJson": false,
+            "SupportsQuery": true,
+            "QueryInfo": {
+              "DynamicChoicesKey": "datatool.ux.valid_hero_names",
+              "Types": [
+  
+              ]
+            }
+          },
+          {
+            "Name": "Hero Cosmetics",
+            "Keyword": "extract-unlocks",
+            "Description": "Extract hero cosmetics",
+            "SupportsJson": false,
+            "SupportsQuery": true,
+            "QueryInfo": {
+              "DynamicChoicesKey": "datatool.ux.valid_hero_names",
+              "Types": [
+                {
+                  "Name": "skin",
+                  "HumanName": "Skin",
+                  "DynamicChoicesKey": "datatool.ux.valid_skin_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "icon",
+                  "HumanName": "Icon",
+                  "DynamicChoicesKey": "datatool.ux.valid_icon_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "spray",
+                  "HumanName": "Spray",
+                  "DynamicChoicesKey": "datatool.ux.valid_spray_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "victorypose",
+                  "HumanName": "Victory Pose",
+                  "DynamicChoicesKey": "datatool.ux.valid_victorypose_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "highlightintro",
+                  "HumanName": "Highlight Intro",
+                  "DynamicChoicesKey": "datatool.ux.valid_highlightintro_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "emote",
+                  "HumanName": "Emote",
+                  "DynamicChoicesKey": "datatool.ux.valid_emote_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "voiceline",
+                  "HumanName": "Voice Line",
+                  "DynamicChoicesKey": "datatool.ux.valid_voiceline_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-general",
+            "Description": "Extract general unlocks",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-hero-voice",
+            "Description": "Extract hero voice sounds",
+            "SupportsJson": false,
+            "SupportsQuery": true,
+            "QueryInfo": {
+              "DynamicChoicesKey": "datatool.ux.valid_hero_names",
+              "Types": [
+                {
+                  "Name": "soundRestriction",
+                  "HumanName": "Sound",
+                  "DynamicChoicesKey": null,
+                  "Tags": null
+                },
+                {
+                  "Name": "groupRestriction",
+                  "HumanName": "Group",
+                  "DynamicChoicesKey": null,
+                  "Tags": null
+                }
+              ]
+            }
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-lootbox",
+            "Description": "Extract lootbox models",
+            "SupportsJson": false,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          },
+          {
+            "Name": "",
+            "Keyword": "extract-maps",
+            "Description": "Extract maps",
+            "SupportsJson": false,
+            "SupportsQuery": true,
+            "QueryInfo": {
+              "DynamicChoicesKey": "datatool.ux.valid_map_names",
+              "Types": [
+  
+              ]
+            }
+          },
+          {
+            "Name": "NPCs",
+            "Keyword": "extract-npcs",
+            "Description": "Extract npcs",
+            "SupportsJson": false,
+            "SupportsQuery": true,
+            "QueryInfo": {
+              "DynamicChoicesKey": "datatool.ux.valid_npc_names",
+              "Types": [
+                {
+                  "Name": "skin",
+                  "HumanName": "Skin",
+                  "DynamicChoicesKey": "datatool.ux.valid_skin_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "icon",
+                  "HumanName": "Icon",
+                  "DynamicChoicesKey": "datatool.ux.valid_icon_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "spray",
+                  "HumanName": "Spray",
+                  "DynamicChoicesKey": "datatool.ux.valid_spray_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "victorypose",
+                  "HumanName": "Victory Pose",
+                  "DynamicChoicesKey": "datatool.ux.valid_victorypose_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "highlightintro",
+                  "HumanName": "Highlight Intro",
+                  "DynamicChoicesKey": "datatool.ux.valid_highlightintro_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "emote",
+                  "HumanName": "Emote",
+                  "DynamicChoicesKey": "datatool.ux.valid_emote_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "voiceline",
+                  "HumanName": "Voice Line",
+                  "DynamicChoicesKey": "datatool.ux.valid_voiceline_names",
+                  "Tags": [
+                    {
+                      "Name": "rarity",
+                      "HumanName": "Rarity",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "common",
+                        "rare",
+                        "epic",
+                        "legendary"
+                      ]
+                    },
+                    {
+                      "Name": "event",
+                      "HumanName": "Event",
+                      "DynamicChoicesKey": null,
+                      "FixedValues": [
+                        "base",
+                        "summergames",
+                        "halloween",
+                        "winter",
+                        "lunarnewyear",
+                        "archives",
+                        "anniversary"
+                      ]
+                    },
+                    {
+                      "Name": "leagueTeam",
+                      "HumanName": "League Team",
+                      "DynamicChoicesKey": "datatool.ux.valid_owl_teams",
+                      "FixedValues": [
+  
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "Name": "",
+            "Keyword": "dump-004",
+            "Description": "Dumps 004",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          }
+        ]
+      },
+      "DumpFlags": {
+        "Flags": {
+          "Flags": [
+  
+          ],
+          "Name": "DumpFlags",
+          "Parent": "ListFlags"
+        },
+        "Tools": [
+          {
+            "Name": "",
+            "Keyword": "dump-strings",
+            "Description": "Dump strings",
+            "SupportsJson": true,
+            "SupportsQuery": false,
+            "QueryInfo": null
+          }
+        ]
+      }
+    }
+  }
