@@ -44,12 +44,19 @@ ipcMain.on('DTLoaded', (event,args)=>{
 
     let dtd = new DTData(dtpath, owpath);
     dtd.generateToolInfo().then(json => {
-      json.ToolGroups.ListFlags.Tools.forEach(tool=>{
-          event.sender.send('addBtn', {
-              cmd: tool.Keyword,
-              text: tool.Description
-          })
-      })
+        json.ToolGroups.DumpFlags.Tools.forEach(tool=>sendbtns(tool))
+        json.ToolGroups.ListFlags.Tools.forEach(tool=>sendbtns(tool))
+        json.ToolGroups.ExtractFlags.Tools.forEach(tool=>sendbtns(tool))
+        json.ToolGroups.ExtractMapEnvFlags.Tools.forEach(tool=>sendbtns(tool))
+
+      function sendbtns(tool){
+        
+            event.sender.send('addBtn', {
+                cmd: tool.Keyword,
+                text: tool.Description
+            })
+        
+      }
     })
 
 

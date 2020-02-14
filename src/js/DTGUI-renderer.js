@@ -10,9 +10,9 @@ let consoleWrapper = document.getElementById("consoleWrapper");
 let queueList = document.getElementById("queueList");
 let btnContainer = document.getElementById('btnContainer');
 ipcRenderer.on('updateConsole', (event, args) =>{
-    const maxChars = 250;
-    consoleElement.innerHTML = args.data;
-    //consoleElement.innerHTML = consoleElement.innerHTML.substr(consoleElement.innerHTML.length - maxChars);
+    const maxChars = 1000;
+    consoleElement.innerHTML += args.data;
+    consoleElement.innerHTML = consoleElement.innerHTML.substr(consoleElement.innerHTML.length - maxChars);
     consoleElement.scrollTop = consoleElement.scrollHeight;
 })
 
