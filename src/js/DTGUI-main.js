@@ -63,13 +63,20 @@ ipcMain.on('DTLoaded', (event,args)=>{
 
 })
 
+ipcMain.on('removeQueue', (event,args)=>{
+    dt.removeFromQueue(args.id);
+    event.sender.send('updateQueue', {data: queueHtml()});
+});
+
 function queueHtml(){
     let h = ""
-    h += "<ol>"
-    dt.cmdQueue.forEach(cmd=>{
-        h+= `<li>${cmd.cmdName}</li>`
+    dt.cmdQueue.forEach((cmd,id)=>{
+        h+=
+        `       <div class='buttonContainerStatic buttonContainerQueue'>
+                    <a class='button' onClick="removeQueue(${id})">${cmd.cmdName}</a>
+                </div>  
+        `
     })
-    h+= "</ol>"
     return h;
 }
 

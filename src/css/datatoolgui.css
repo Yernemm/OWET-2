@@ -96,3 +96,23 @@
     border-color: inherit;
     border-width: 0px;
   }
+
+  .buttonContainer, .buttonContainerStatic {
+    font-size: 14px;
+    height: fit-content;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .buttonContainerQueue {
+      width: calc(100% - 10px);
+      margin: auto;
+      margin-bottom: 2px;
+      border-style: dashed;
+  }
+
+  .buttonContainerQueue:hover {
+    background-color: #751026;
+    border-color: #ff0000;
+    border-style: dotted;
+}

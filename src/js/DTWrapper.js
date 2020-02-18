@@ -20,6 +20,14 @@ class DTWrapper {
         this.cmdQueue.push(new DTCmd(fullcmd, cmd));
     }
 
+    removeFromQueue(id){
+
+        if(id == 0)
+            this.cmdQueue[0].kill();
+        this.cmdQueue.splice(id,1);
+
+    }
+
     runQueue(){
         if(!this.queueRunning && this.cmdQueue.length > 0){
             this.queueRunning = true;

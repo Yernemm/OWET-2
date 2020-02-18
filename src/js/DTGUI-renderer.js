@@ -38,4 +38,8 @@ ipcRenderer.on('addBtn', (event, args)=> {
 
 })
 
+function removeQueue(id){
+    ipcRenderer.send('removeQueue', {id});
+}
+
 ipcRenderer.send('DTLoaded',{});

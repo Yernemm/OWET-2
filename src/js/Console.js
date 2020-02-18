@@ -2,12 +2,13 @@ const { spawn } = require('child_process');
 class Console {
 
     constructor() {
-
+      this.child;
     }
 
     run(command, onData = (out, err) => console.log(d), onDone = (a) => {}, stackData = false) {
       console.log(command)
-        const child = spawn(command, {shell: true});
+        this.child = spawn(command, {shell: true});
+        let child = this.child;
 
     // use child.stdout.setEncoding('utf8'); if you want text chunks
     child.stdout.setEncoding('utf8');
@@ -47,6 +48,10 @@ class Console {
 child.on('close', (code) => {
   onDone(code);
 });
+    }
+
+    kill(){
+      this.child.kill("SIGINT");
     }
 
 }
