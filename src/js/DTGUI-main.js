@@ -71,6 +71,12 @@ ipcMain.on('removeQueue', (event,args)=>{
 function queueHtml(){
     let h = ""
     dt.cmdQueue.forEach((cmd,id)=>{
+        if(id==0){
+            h+= `<p>Running</p>`
+        }
+        if(id==1){
+            h+= `<p>Queue</p>`
+        }
         h+=
         `       <div class='buttonContainerStatic buttonContainerQueue'>
                     <a class='button' onClick="removeQueue(${id})">${cmd.cmdName}</a>
