@@ -2,24 +2,24 @@ const { spawn } = require('child_process');
 class Console {
 
     constructor() {
-      this.child;
+      this.child = null;
     }
 
     run(command, onData = (out, err) => console.log(d), onDone = (a) => {}, stackData = false) {
       console.log(command)
         this.child = spawn(command, {shell: true});
-        let child = this.child;
+        
 
     // use child.stdout.setEncoding('utf8'); if you want text chunks
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
+    this.child.stdout.setEncoding('utf8');
+    this.child.stderr.setEncoding('utf8');
     let totalOut = '';
-    child.stdout.on('data', (chunk) => {
+    this.child.stdout.on('data', (chunk) => {
       // data from standard output is here as buffers
       sendData(chunk, false);
     });
 
-    child.stderr.on('data', (chunk) => {
+    this.child.stderr.on('data', (chunk) => {
       // data from standard output is here as buffers
       sendData(chunk, true);
     });
@@ -45,13 +45,14 @@ class Console {
 // since these are streams, you can pipe them elsewhere
 //child.stderr.pipe(dest);
 
-child.on('close', (code) => {
+this.child.on('close', (code) => {
   onDone(code);
 });
     }
 
     kill(){
-      this.child.kill("SIGINT");
+      console.log("killing child process");
+      spawn("taskkill", ["/pid", this.child.pid, '/f', '/t']);
     }
 
 }
