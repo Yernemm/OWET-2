@@ -1,4 +1,4 @@
-const Console =require('./Console.js');
+const Console = require('./Console.js');
 /**
  * A single DT Command.
  */
@@ -10,21 +10,27 @@ class DTCmd {
         this.console = new Console();
     }
 
-    run(onData = ()=>{}) {
+    run(onData = () => {}) {
 
         return new Promise((resolve, reject) => {
             let dataCount = '';
-            function onDataPass(out,err) {
+
+            function onDataPass(out, err) {
                 let data = out ? out : err;
                 dataCount = data;
                 onData(dataCount);
             }
             //TO-DO: reject promise if console has an error.
-            this.console.run(this.cmd,onDataPass,(code)=>{resolve({code, dataCount})})
+            this.console.run(this.cmd, onDataPass, (code) => {
+                resolve({
+                    code,
+                    dataCount
+                })
+            })
         })
     }
 
-    kill(){
+    kill() {
         this.console.kill()
     }
 
