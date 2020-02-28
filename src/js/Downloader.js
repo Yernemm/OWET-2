@@ -18,7 +18,7 @@ class Downloader
                 uri: this.url
             });
 
-            req.pipe(this.filepath);
+            req.pipe(fs.createWriteStream(this.filepath));
 
             let totalsize = 1;
             let remainingsize = 0;

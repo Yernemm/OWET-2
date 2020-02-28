@@ -8,7 +8,6 @@ class DTUpdater {
     }
 
     downloadDT() {
-        console.log('piss n shit')
         return new Promise((reslove, reject) => {
             
             const options = {
@@ -23,7 +22,12 @@ class DTUpdater {
                 res.setEncoding('utf8');
 
                 res.once('data', d => {
-                    console.log(JSON.parse(d).build.jobs[0].jobId);
+                    
+                    let jobId = JSON.parse(d).build.jobs[0].jobId;
+                    let dtDown = new Downloader(`https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/dist%2Ftoolchain-release.zip`, 'toolchain.zip', '/temp/');
+                    console.log(dtDown);
+                    dtDown.download((e)=>console.log(e))
+                    .then(res=>console.log(res));
                 });
             });
 
@@ -33,9 +37,7 @@ class DTUpdater {
 
             req.end();
         });
-        let jobId;
-        let dtDown = new Downloader(`https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/dist%2Ftoolchain-release.zip`, 'toolchain.zip', 'temp');
-    }
+        }
 }
 
 module.exports = DTUpdater;
