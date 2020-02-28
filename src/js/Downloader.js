@@ -1,8 +1,7 @@
 const getAppDataPath =require("appdata-path");
 const fs = require('fs');
 const request = require('request');
-//https://ci.appveyor.com/api/projects/yretenai/owlib/branch/master
-//https://ci.appveyor.com/api/buildjobs/[JOB-ID]/artifacts/dist%2Ftoolchain-release.zip
+
 class Downloader
 {
     constructor(url, name, relpath){
@@ -36,7 +35,7 @@ class Downloader
 
             req.on('end', ()=>{
                 resolve();
-            })
+            });
 
         });
     }

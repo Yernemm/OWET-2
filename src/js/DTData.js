@@ -17,12 +17,12 @@ class DTData {
                     data += err ? err : "";
                 },
                 (code) => {
-                    resolve(JSON.parse(data))
+                    resolve(JSON.parse(data));
                 }
-            )
+            );
 
 
-        })
+        });
     }
 }
 

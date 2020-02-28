@@ -31,14 +31,14 @@ class DTWrapper {
     runQueue(){
         if(!this.queueRunning && this.cmdQueue.length > 0){
             this.queueRunning = true;
-            let cmd = this.cmdQueue[0]
+            let cmd = this.cmdQueue[0];
             cmd.run(this.consoleUpdate).then(obj => {
                 this.cmdQueue.shift();
                 this.done(obj);
                 this.queueRunning = false;
                 if(this.cmdQueue.length > 0)
                     this.runQueue();
-            })
+            });
         }
     }
     
