@@ -1,5 +1,6 @@
 const Downloader = require('./Downloader.js');
 const https = require('https');
+const unzipper = require('unzipper');
 class DTUpdater {
     //https://ci.appveyor.com/api/projects/yretenai/owlib/branch/master
     //https://ci.appveyor.com/api/buildjobs/[JOB-ID]/artifacts/dist%2Ftoolchain-release.zip
@@ -26,8 +27,13 @@ class DTUpdater {
                     let jobId = JSON.parse(d).build.jobs[0].jobId;
                     let dtDown = new Downloader(`https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/dist%2Ftoolchain-release.zip`, 'toolchain.zip', '/temp/');
                     console.log(dtDown);
-                    dtDown.download((e)=>console.log(e))
-                    .then(res=>console.log(res));
+                    dtDown.download((e)=>console.log(Math.floor(e*100) / 1 + "%"))
+                    .then(()=>{
+                        //unzip
+                        console.log('unzip');
+                        fs.createReadStream(dtDown.filepath)
+                        .pipe(unzipper.Extract({ path: dtDown.path }));
+                    });
                 });
             });
 
