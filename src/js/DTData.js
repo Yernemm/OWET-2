@@ -1,4 +1,7 @@
 const Console = require('./Console.js');
+const fs = require("fs");
+const getAppDataPath =require("appdata-path");
+
 class DTData {
 
     constructor(dtPath, owPath) {
@@ -24,6 +27,29 @@ class DTData {
 
         });
     }
+
+    generateAndCache() {
+        return new Promise((resolve, reject) => {
+            this.generateToolInfo().then(data => {
+                fs.writeFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", data, resolve);
+            });
+        });
+    }
+
+    getFromCache() {
+        return new Promise((resolve, reject) => {
+            fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err,data) => {
+                if(data)
+                    resolve(JSON.parse(data));
+                else
+                    reject(err);
+
+            });
+        });
+    }
+
+    
+
 }
 
 module.exports = DTData;
