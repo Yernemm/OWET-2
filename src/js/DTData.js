@@ -1,6 +1,6 @@
 const Console = require('./Console.js');
 const fs = require("fs");
-const getAppDataPath =require("appdata-path");
+const getAppDataPath = require("appdata-path");
 
 class DTData {
 
@@ -31,15 +31,15 @@ class DTData {
     generateAndCache() {
         return new Promise((resolve, reject) => {
             this.generateToolInfo().then(data => {
-                fs.writeFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", data, resolve);
+                fs.writeFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", JSON.stringify(data), resolve);
             });
         });
     }
 
     getFromCache() {
         return new Promise((resolve, reject) => {
-            fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err,data) => {
-                if(data)
+            fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err, data) => {
+                if (data)
                     resolve(JSON.parse(data));
                 else
                     reject(err);
@@ -48,7 +48,21 @@ class DTData {
         });
     }
 
-    
+    getInfo() {
+        return new Promise((resolve, reject) => {
+            this.getFromCache()
+                .then(data => resolve(data)) //return cached info.
+                .catch((err) => {
+                    //cannot read cached data
+                    console.log(err);
+                    this.generateToolInfo()
+                        .then(data => resolve(data))
+                        .catch(err => reject(err));
+                    this.generateAndCache(); //cache if not cached.
+                });
+        });
+    }
+
 
 }
 

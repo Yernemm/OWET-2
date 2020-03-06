@@ -53,7 +53,7 @@ ipcMain.on('DTLoaded', (event, args) => {
     });
 
     let dtd = new DTData(dtpath, owpath);
-    dtd.generateToolInfo().then(json => {
+    dtd.getInfo().then(json => {
         ['DumpFlags', 'ListFlags', 'ExtractFlags', 'ExtractMapEnvFlags']
         .forEach(item => {
             json.ToolGroups[item].Tools.forEach(tool => sendbtns(tool));
@@ -65,13 +65,13 @@ ipcMain.on('DTLoaded', (event, args) => {
             event.sender.send('addBtn', {
                 cmd: tool.Keyword,
                 text: tool.Description
-            })
+            });
 
         }
-    })
+    });
 
 
-})
+});
 
 ipcMain.on('removeQueue', (event, args) => {
     dt.removeFromQueue(args.id);
