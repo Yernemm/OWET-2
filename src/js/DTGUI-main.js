@@ -2,7 +2,7 @@ let fs = require('fs');
 let getAppDataPath = require("appdata-path");
 let DTWrapper = require("./DTWrapper.js");
 let DTCmd = require('./DTCmd.js');
-const {ipcMain} = require('electron')
+const {ipcMain} = require('electron');
 const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
 const dtpath = getAppDataPath("Yernemm/OWET2/datatool");
 const outpath = getAppDataPath("Yernemm/OWET2/extracted");
@@ -98,6 +98,9 @@ function queueHtml() {
     return h;
 }
 
+let SettingsManager = require('./SettingsManager.js');
+let sm = new require('./SettingsManager.js');
+console.log(JSON.stringify(sm.createDefaults()));
 
 
 function runAtMain() {

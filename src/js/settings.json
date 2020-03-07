@@ -1,0 +1,63 @@
+{
+    "settings": {
+        "logging": {
+            "title": "Command Logging",
+            "desc": "Choose how to create text log files for commands",
+            "type": "radio",
+            "values": [{
+                    "name": "session",
+                    "title": "Full session",
+                    "desc": "Create a log file for the entire session. It will include all commands run since the gui was open until it is closed."
+                
+                },
+                {
+                    "name": "command",
+                    "title": "Single command",
+                    "desc": "Create a separate log file for each command run.",
+                    "default": true
+                },
+                {
+                    "name": "none",
+                    "title": "None",
+                    "desc": "Do not create any logs."
+                }
+
+            ]
+        },
+        "updater": {
+            "title": "DataTool Updater",
+            "desc": "Choose whether to automatically update DataTool.",
+
+            "type": "check",
+            "values": [{
+                "name": "auto",
+                "title": "Check for updates on startup",
+                "desc": "OWET2 will automatically look for DataTool updates when it is opened and it will download updates if found.",
+                "default": true
+            }]
+
+        },
+        "downloaddt": {
+            "title": "Download DataTool",
+            "desc": "Force download DataTool.",
+            "type": "button",
+            "values": [{
+                "name": "force",
+                "title": "Force download",
+                "desc": "OWET2 will download the latest version of DataTool and overwrite the previous version."
+            }]
+        },
+        "owpath": {
+            "title": "Overwatch Path",
+            "desc": "Set the correct path to your Overwatch folder.",
+            "type": "text",
+            "values": [{
+                "name": "path",
+                "title": "Path",
+                "desc": "Overwatch path, including '/Overwatch/_retail_'.",
+                "default": "C:/Program Files (x86)/Overwatch/_retail_"
+            }]
+
+        }
+    }
+}
