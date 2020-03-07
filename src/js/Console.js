@@ -1,4 +1,6 @@
-const {spawn} = require('child_process');
+const {
+  spawn
+} = require('child_process');
 
 class Console {
 
