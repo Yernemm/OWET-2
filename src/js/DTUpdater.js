@@ -1,6 +1,7 @@
 const Downloader = require('./Downloader.js');
 const https = require('https');
 const unzipper = require('unzipper');
+const getAppDataPath =require("appdata-path");
 class DTUpdater {
     //https://ci.appveyor.com/api/projects/yretenai/owlib/branch/master
     //https://ci.appveyor.com/api/buildjobs/[JOB-ID]/artifacts/dist%2Ftoolchain-release.zip
@@ -41,12 +42,13 @@ class DTUpdater {
             .then(d=> {
                     
                 let jobId = JSON.parse(d).build.jobs[0].jobId;
-                let dtDown = new Downloader(`https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/dist%2Ftoolchain-release.zip`, 'toolchain.zip', '/temp/');
+                let dtDown = new Downloader(`https://ci.appveyor.com/api/buildjobs/${jobId}/artifacts/dist%2Ftoolchain-release.zip`, 'toolchain.zip', '/datatool/');
                 console.log(dtDown);
                 dtDown.download((e)=>percentageTick(Math.floor(e*100) / 1 + "%"))
                 .then(()=>{
                     //unzip
                     console.log('unzip');
+                    fs.writeFile(dtDown.filepath + "version.txt", JSON.parse(d).build.version);
                     fs.createReadStream(dtDown.filepath)
                     .pipe(unzipper.Extract({ path: dtDown.path }));
                 });
@@ -56,6 +58,43 @@ class DTUpdater {
           
         });
         }
+
+    getLocalVersion(){
+        return new Promise((resolve,reject)=>{
+            fs.readFile(getAppDataPath('Yernemm/OWET2/datatool/version.txt'),{'encoding': 'utf8'},(err,data)=>{
+                if(err)
+                    reject(err);
+                else
+                    resolve(data);
+            });
+        });
+    }
+
+    getLatestVersion(){
+        return new Promise((resolve, reject)=>{
+            this.makeDtRequest().then(d=>{
+                resolve(JSON.parse(d).build.version);
+            })
+            .catch(err=>reject(err));
+        });
+    }
+
+    isLatestDownloaded(){
+        return new Promise((resolve, reject)=>{
+            this.getLocalVersion()
+            .then(local => {
+                this.getLatestVersion()
+                .then(latest=>{
+                    if(latest == local)
+                        resolve(true);
+                    else
+                        resolve(false);
+                })
+                .catch(e=>reject(e));
+            })
+            .catch(e=> resolve(false)); //error reading file. Likely no file so not downloaded.
+        });
+    }
 }
 
 module.exports = DTUpdater;
