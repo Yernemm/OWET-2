@@ -18,8 +18,14 @@ class DTData {
             let i = 0;
             c.run(cmd, (out, err) => {
                     data += err ? err : "";
+                    //console.log(out);
+                    console.log(out);
                 },
                 (code) => {
+                    console.log(code);
+                    console.log('---data');
+                    console.log(data);
+                    console.log('-----------data');
                     resolve(JSON.parse(data));
                 }
             );
@@ -38,13 +44,20 @@ class DTData {
 
     getFromCache() {
         return new Promise((resolve, reject) => {
-            fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err, data) => {
-                if (data)
-                    resolve(JSON.parse(data));
-                else
-                    reject(err);
+            if(fs.existsSync(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json")){
 
-            });
+                fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err, data) => {
+                    if (data)
+                        resolve(JSON.parse(data));
+                    else
+                        reject(err);
+    
+                });
+
+            }else{
+                reject('no cache');
+            }
+
         });
     }
 
@@ -53,6 +66,7 @@ class DTData {
             this.getFromCache()
                 .then(data => resolve(data)) //return cached info.
                 .catch((err) => {
+                    console.log('ERROR with getinfo from cache');
                     //cannot read cached data
                     console.log(err);
                     this.generateToolInfo()

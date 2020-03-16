@@ -2,7 +2,9 @@ let fs = require('fs');
 let getAppDataPath = require("appdata-path");
 let DTWrapper = require("./DTWrapper.js");
 let DTCmd = require('./DTCmd.js');
-const {ipcMain} = require('electron');
+const {
+    ipcMain
+} = require('electron');
 const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
 const dtpath = getAppDataPath("Yernemm/OWET2/datatool");
 const outpath = getAppDataPath("Yernemm/OWET2/extracted");
@@ -10,6 +12,7 @@ const outpath = getAppDataPath("Yernemm/OWET2/extracted");
 const logFile = getAppDataPath("Yernemm/OWET2/logs") + `/log-${new Date().getTime()}.txt`;
 
 const DTData = require('./DTData.js');
+const DTUpdater = require('./DTUpdater.js');
 
 console.log("ummm sonny")
 
@@ -36,39 +39,46 @@ ipcMain.on('runConsoleCmd', (event, args) => {
 
 
 ipcMain.on('DTLoaded', (event, args) => {
-    console.log("DT Loaded")
-    dt = new DTWrapper(dtpath, owpath, outpath, (data) => {
-        event.sender.send('updateConsole', {
-            data: data
-        });
-        logStream.write(data);
-    }, (o) => {
-        event.sender.send('updateConsole', {
-            data: `\nExited with code ${o.code}\n\n`
-        });
-        logStream.write(`\nExited with code ${o.code}`);
-        event.sender.send('updateQueue', {
-            data: queueHtml()
-        });
-    });
+    let dtu = new DTUpdater();
+    dtu.update().then(() => {
 
-    let dtd = new DTData(dtpath, owpath);
-    dtd.getInfo().then(json => {
-        ['DumpFlags', 'ListFlags', 'ExtractFlags', 'ExtractMapEnvFlags']
-        .forEach(item => {
-            json.ToolGroups[item].Tools.forEach(tool => sendbtns(tool));
-        })
-
-
-        function sendbtns(tool) {
-
-            event.sender.send('addBtn', {
-                cmd: tool.Keyword,
-                text: tool.Description
+        console.log("DT Loaded");
+        dt = new DTWrapper(dtpath, owpath, outpath, (data) => {
+            event.sender.send('updateConsole', {
+                data: data
             });
+            logStream.write(data);
+        }, (o) => {
+            event.sender.send('updateConsole', {
+                data: `\nExited with code ${o.code}\n\n`
+            });
+            logStream.write(`\nExited with code ${o.code}`);
+            event.sender.send('updateQueue', {
+                data: queueHtml()
+            });
+        });
 
-        }
-    });
+        let dtd = new DTData(dtpath, owpath);
+        dtd.getInfo().then(json => {
+            ['DumpFlags', 'ListFlags', 'ExtractFlags', 'ExtractMapEnvFlags']
+            .forEach(item => {
+                json.ToolGroups[item].Tools.forEach(tool => sendbtns(tool));
+            })
+
+
+            function sendbtns(tool) {
+
+                event.sender.send('addBtn', {
+                    cmd: tool.Keyword,
+                    text: tool.Description
+                });
+
+            }
+        });
+
+    })
+    .catch(err=>console.log("ERROR\n" + err));
+
 
 
 });
@@ -99,7 +109,7 @@ function queueHtml() {
 }
 
 let SettingsManager = require('./SettingsManager.js');
-let sm = new require('./SettingsManager.js');
+let sm = new SettingsManager();
 console.log(JSON.stringify(sm.createDefaults()));
 
 

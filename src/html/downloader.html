@@ -7,7 +7,23 @@
     <title>OWET 2 - Downloader</title>
 </head>
 <body>
-    <h1>Downloading <span id="downloadName"></span>...</h1>
-    <progress id="progress" value="0" max="100"> 0% </progress>
+    <h1 style="text-align: center;">Downloading <span id="downloadName"></span>...</h1>
+    <progress style="width: 100%;" id="progress" value="0" max="100"> 0% </progress>
+    <script>
+        const { ipcRenderer } = require('electron');
+    
+    ipcRenderer.on('downloader-tick', (event, value) => {
+        document.getElementById('progress').value = value;
+        document.getElementById('progress').innerHTML = value + '%';
+    });
+
+    ipcRenderer.on('downloader-values', (event, data) => {
+        document.getElementById('downloadName').innerHTML = data.name;
+    })
+
+    ipcRenderer.send('downloader-ready');
+    
+
+        </script>
 </body>
 </html>
