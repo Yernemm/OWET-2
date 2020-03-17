@@ -5,8 +5,9 @@ function pathMaker(){
         "/Yernemm",
         "/Yernemm/OWET2",
         "/Yernemm/OWET2/cache",
-        "/Yernemm/OWET2/datatool",
-        "/Yernemm/OWET2/extracted",
+        "/Yernemm/OWET2/output",
+        "/Yernemm/OWET2/output/logs",
+        "/Yernemm/OWET2/output/extracted",
         "/Yernemm/OWET2/logs",
         "/Yernemm/OWET2/temp"
     ];

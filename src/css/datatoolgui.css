@@ -9,6 +9,14 @@
     text-align: center;
 }
 
+.dtTopPanel {
+    width: 100%;
+    display: block;
+    position: fixed;
+    height: 60px;
+    padding-left: 20px;
+}
+
 .dtColumn {
     top: 0px;
 
@@ -87,7 +95,7 @@
     word-wrap: break-word;
     -webkit-user-select: text;
     user-select: text;
-    height: calc(100% - 100px);
+    height: calc(100% - 70px);
     width: 100%;
     resize: none;
     box-sizing: border-box;

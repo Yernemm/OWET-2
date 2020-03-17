@@ -2,11 +2,11 @@
 const { ipcRenderer } = require('electron');
 function cmdBtn(cmd) {
     console.log('runnin')
-    ipcRenderer.send('runConsoleCmd', {cmd: cmd})
+    ipcRenderer.send('runConsoleCmd', {cmd: cmd});
     
 
 }
-let consoleElement = document.getElementById("console")
+let consoleElement = document.getElementById("console");
 let consoleWrapper = document.getElementById("consoleWrapper");
 let queueList = document.getElementById("queueList");
 let btnContainer = document.getElementById('btnContainer');
@@ -17,7 +17,7 @@ ipcRenderer.on('updateConsole', (event, args) =>{
     const maxChars =150000;
     consoleText+= args.data;
     consoleText = consoleText.substr(consoleText.length - maxChars);
-    consoleElement.textContent = consoleText
+    consoleElement.textContent = consoleText;
     changed = true;
 })
 

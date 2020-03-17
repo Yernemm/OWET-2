@@ -31,7 +31,7 @@ class DTCmd {
     }
 
     kill() {
-        this.console.kill()
+        this.console.kill();
     }
 
 }

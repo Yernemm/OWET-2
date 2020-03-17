@@ -7,14 +7,14 @@ const {
 } = require('electron');
 const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
 const dtpath = getAppDataPath("Yernemm/OWET2/datatool");
-const outpath = getAppDataPath("Yernemm/OWET2/extracted");
+const outpath = getAppDataPath("Yernemm/OWET2/output/extracted");
 
-const logFile = getAppDataPath("Yernemm/OWET2/logs") + `/log-${new Date().getTime()}.txt`;
+const logFile = getAppDataPath("Yernemm/OWET2/output/logs") + `/log-${new Date().getTime()}.txt`;
 
 const DTData = require('./DTData.js');
 const DTUpdater = require('./DTUpdater.js');
 
-console.log("ummm sonny")
+console.log("ummm sonny");
 
 ///
 
@@ -37,6 +37,10 @@ ipcMain.on('runConsoleCmd', (event, args) => {
     });
 });
 
+ipcMain.on('DtOpenCurrentLog', (event, args)=>{
+
+});
+
 
 ipcMain.on('DTLoaded', (event, args) => {
     let dtu = new DTUpdater();
@@ -50,9 +54,9 @@ ipcMain.on('DTLoaded', (event, args) => {
             logStream.write(data);
         }, (o) => {
             event.sender.send('updateConsole', {
-                data: `\nExited with code ${o.code}\n\n`
+                data: `\n[OWET] Exited with code ${o.code}\n\n`
             });
-            logStream.write(`\nExited with code ${o.code}`);
+            logStream.write(`\n[OWET] Exited with code ${o.code}\n\n`);
             event.sender.send('updateQueue', {
                 data: queueHtml()
             });
@@ -91,20 +95,21 @@ ipcMain.on('removeQueue', (event, args) => {
 });
 
 function queueHtml() {
-    let h = ""
+    let h = "";
     dt.cmdQueue.forEach((cmd, id) => {
         if (id == 0) {
-            h += `<p>Running</p>`
+            h += `<p>Running</p>`;
         }
         if (id == 1) {
-            h += `<p>Queue</p>`
+            h += `<p>Queue</p>`;
         }
         h +=
-            `       <div class='buttonContainerStatic buttonContainerQueue'>
+            `       <div class='buttonContainerStatic buttonContainerQueue tooltip'>
                     <a class='button' onClick="removeQueue(${id})">${cmd.cmdName}</a>
+                    <span class="tooltiptext">${cmd.cmd.split('& ')[1]}</span>
                 </div>  
-        `
-    })
+        `;
+    });
     return h;
 }
 

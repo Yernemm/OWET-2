@@ -32,6 +32,18 @@ body {
 
 }
 
+.buttonContainerSmall {
+  display: table;
+  width: fit-content;
+  background-color: #283549;
+  border-style:solid;
+  border-width: 2px;
+  border-color: #4b78bc;
+  transition-duration: 0.5s;
+  height: fit-content;
+  margin-top: 5px;
+}
+
 .buttonContainer:hover {
     width: 340px;
     padding-left: 20px;
@@ -40,7 +52,7 @@ body {
     border-color: #3f67a3;
 }
 
-.buttonContainerStatic:hover {
+.buttonContainerStatic:hover, .buttonContainerSmall:hover {
     background-color: #1e2633;
     border-color: #3f67a3;
 }

@@ -5,10 +5,30 @@
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/nohighlight.css">
         <link rel="stylesheet" href="../css/datatoolgui.css">
+        <link rel="stylesheet" href="../css/tooltip.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
     <body>
+        <div class='dtTopPanel'>
+            <div style="float: left; padding: 5px;">
+                <form>
+                    <label for="flagsBox">Flags:</label>
+                    <input id="flagsBox" type="text" /><br>
+                    <label for="argumentsBox">Arguments:</label>
+                    <input id="argumentsBox" type="text" />
+                </form>
+            </div>
+            <div style="float: right; margin-right: 40px; margin-top: 0px;">
+                <div class='buttonContainerSmall'>
+                    <a class='button' onClick="ipcRenderer.send('DtOpenOutputFolder',{})">Open Output Folder</a>
+                </div>  
+                <div class='buttonContainerSmall'>
+                    <a class='button' onClick="ipcRenderer.send('DtOpenCurrentLog',{})">Open Current Log File</a>
+                </div>  
+            </div>
+
+        </div>
         <div class='dtColContainer'>
 
             <div class='dtCol1c dtColumn'>

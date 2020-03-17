@@ -9,7 +9,8 @@ class Console {
   }
 
   run(command, onData = (out, err) => console.log(d), onDone = (a) => {}, stackData = false) {
-    console.log(command)
+    console.log(command);
+  
     this.child = spawn(command, {
       shell: true
     });
@@ -17,6 +18,7 @@ class Console {
     this.child.stdout.setEncoding('utf8');
     this.child.stderr.setEncoding('utf8');
     let totalOut = '';
+    sendData(`[OWET] Running: ${command}\n`, false);
     this.child.stdout.on('data', (chunk) => {
       sendData(chunk, false);
     });
