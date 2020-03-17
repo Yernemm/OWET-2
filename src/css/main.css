@@ -45,9 +45,9 @@ body {
 }
 
 .buttonContainer:hover {
-    width: 340px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 300px;
+    padding-left: 60px;
+    padding-right: 60px;
     background-color: #1e2633;
     border-color: #3f67a3;
 }

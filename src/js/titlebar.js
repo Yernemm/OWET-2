@@ -29,21 +29,8 @@ menu.append(new MenuItem({
     label: 'Help',
     submenu: [
         {
-            label: 'Subitem checkbox',
-            type: 'checkbox',
-            checked: true
-        },
-        {
-            type: 'separator'
-        },
-        {
-            label: 'Subitem with submenu',
-            submenu: [
-                {
-                    label: 'Submenu &item 1',
-                    accelerator: 'Ctrl+T'
-                }
-            ]
+            label: 'Online Guide',
+            click: () => opn("https://yernemm.xyz/posts/owet2guide")
         }
     ]
 }));
@@ -53,12 +40,23 @@ menu.append(new MenuItem({
     submenu: [
         {
             label: 'Main Menu',
-            click: () => console.log('Click on subitem 1')
+            click: () => document.location.href = "./../html/mainmenu.html"
         },
         {
             label: 'DataTool GUI',
-            click: () => console.log('Click on subitem 1')
+            click: () => document.location.href = "./../html/datatoolgui.html"
         },
+
+        {
+            label: 'Settings',
+            click: () => document.location.href = "./../html/settings.html"
+        },
+
+    ]
+}));
+
+/*
+
         {
             label: 'Conversion Tools',
             click: () => console.log('Click on subitem 1')
@@ -67,7 +65,7 @@ menu.append(new MenuItem({
             label: 'Other Tools',
             click: () => console.log('Click on subitem 1')
         }
-    ]
-}));
+
+*/
  
 titlebar.updateMenu(menu);
