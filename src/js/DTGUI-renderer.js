@@ -2,7 +2,11 @@
 const { ipcRenderer } = require('electron');
 function cmdBtn(cmd) {
     console.log('runnin')
-    ipcRenderer.send('runConsoleCmd', {cmd: cmd});
+    ipcRenderer.send('runConsoleCmd', {
+        cmd: cmd, 
+        flags: document.getElementById('flagsBox').value,
+        args: document.getElementById('argumentsBox').value 
+    });
     
 
 }

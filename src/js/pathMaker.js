@@ -9,7 +9,8 @@ function pathMaker(){
         "/Yernemm/OWET2/output/logs",
         "/Yernemm/OWET2/output/extracted",
         "/Yernemm/OWET2/logs",
-        "/Yernemm/OWET2/temp"
+        "/Yernemm/OWET2/temp",
+        "/Yernemm/OWET2/datatool"
     ];
 
     paths.forEach(path => {

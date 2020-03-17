@@ -17,7 +17,7 @@ class DTUpdater {
 
             const options = {
                 hostname: 'ci.appveyor.com',
-                path: '/api/projects/yretenai/owlib/branch/master',
+                path: '/api/projects/yretenai/owlib/branch/util-modes',
                 method: 'GET'
             };
 
@@ -38,7 +38,7 @@ class DTUpdater {
     }
 
     downloadDT(percentageTick = p=>console.log(p)) {
-        return new Promise((reslove, reject) => {
+        return new Promise((resolve, reject) => {
 
             this.makeDtRequest()
             .then(d=> {
@@ -52,8 +52,10 @@ class DTUpdater {
                     console.log('unzip');
                     fs.writeFile(dtDown.path + "version.txt", JSON.parse(d).build.version, ()=>{});
                     fs.createReadStream(dtDown.filepath)
-                    .pipe(unzipper.Extract({ path: dtDown.path }))
-                    .on('close', reslove());
+                    .pipe(unzipper.Extract({ path: dtDown.path })
+                    .on('close', ()=>resolve())
+                    );
+                    
                 });
             })
             .catch(err=>console.log(err));

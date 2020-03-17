@@ -6,9 +6,12 @@ const { Menu, MenuItem } = require('electron').remote
     drag: true
  });
 
+ const opn = require('better-opn');
+
 
 
 const menu = new Menu();
+/*
 menu.append(new MenuItem({
     label: 'Info',
     submenu: [
@@ -21,7 +24,7 @@ menu.append(new MenuItem({
         }
     ]
 }));
- 
+ */
 menu.append(new MenuItem({
     label: 'Help',
     submenu: [

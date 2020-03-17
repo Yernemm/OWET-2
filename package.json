@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "appdata-path": "^1.0.0",
+    "better-opn": "^1.0.0",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "request": "^2.88.2",
     "unzipper": "^0.10.10"

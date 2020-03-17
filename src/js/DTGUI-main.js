@@ -30,7 +30,7 @@ let dt;
 
 
 ipcMain.on('runConsoleCmd', (event, args) => {
-    dt.addToQueue(args.cmd);
+    dt.addToQueue(args.cmd, args.flags, args.args);
     dt.runQueue();
     event.sender.send('updateQueue', {
         data: queueHtml()
@@ -38,7 +38,13 @@ ipcMain.on('runConsoleCmd', (event, args) => {
 });
 
 ipcMain.on('DtOpenCurrentLog', (event, args)=>{
+    let notepadCmd = require('child_process').spawn;
+    notepadCmd('C:\\windows\\notepad.exe', [logFile]);
+});
 
+ipcMain.on('DtOpenOutputFolder', (event, args)=>{
+    require('child_process')
+    .exec(`start "" "${getAppDataPath("Yernemm/OWET2/output")}"`);
 });
 
 
