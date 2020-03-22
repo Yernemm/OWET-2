@@ -2,7 +2,7 @@
 
 Work-in-progress.
 
-No public builds available yet.
+Currently only early Alpha versions are available.
  
 ---
 
