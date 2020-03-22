@@ -20,5 +20,8 @@
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "request": "^2.88.2",
     "unzipper": "^0.10.10"
+  },
+  "build": {
+    "files": ["**/*"]
   }
 }

@@ -25,7 +25,7 @@ function pathMaker(){
 
     const tooInfoPath = getAppDataPath('/Yernemm/OWET2/cache/toolinfo.json');
     if(!fs.existsSync(tooInfoPath)){
-        fs.copyFileSync('./toolinfo.json', tooInfoPath);
+        fs.writeFileSync(tooInfoPath, JSON.stringify(require('./toolinfo.json')));
         console.log('Copied toolinfo.json');
     }
 
