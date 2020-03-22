@@ -17,7 +17,7 @@ class DTUpdater {
 
             const options = {
                 hostname: 'ci.appveyor.com',
-                path: '/api/projects/yretenai/owlib/branch/util-modes',
+                path: '/api/projects/yretenai/owlib/branch/master',
                 method: 'GET'
             };
 

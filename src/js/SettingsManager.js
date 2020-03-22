@@ -1,4 +1,4 @@
-const opts = require('./settings.json');
+const opts = require('./settings-simple.json');
 class SettingsManager {
     constructor(){
       
@@ -26,6 +26,40 @@ class SettingsManager {
             defs[set] = vals;
         }
         return defs;
+    }
+
+    createHtml(){
+        let html = '';
+        for(let sett in opts.settings){
+            let set = opts.settings[sett];
+
+            html+=`<div id='${sett}'`;
+
+                html+=`<p><b>${set.title}</b><br>${set.desc}</p><form>`
+
+                switch (set.type) {
+                    case 'text':
+
+                    set.values.forEach(val => {
+                        html+=`${val.desc}<br><label for="${sett}-${val.name}">${val.title}:</label>
+                    <input id="${sett}-${val.name}" type="text" /><br>`
+                    });
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
+
+                html+='</form>';
+
+            html+='<hr></div>';     
+        }
+        return html;
+    }
+
+    saveSettings(data){
+        let settings = {...this.createDefaults(), ...data};
     }
 }
 module.exports = SettingsManager;

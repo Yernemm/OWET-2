@@ -21,5 +21,22 @@ function pathMaker(){
         }
     });
 
+    //Temporarily copy toolinfo since datatool doesn't have it in the master branch.
+
+    const tooInfoPath = getAppDataPath('/Yernemm/OWET2/cache/toolinfo.json');
+    if(!fs.existsSync(tooInfoPath)){
+        fs.copyFileSync('./toolinfo.json', tooInfoPath);
+        console.log('Copied toolinfo.json');
+    }
+
+    //Create default settings.
+    const settingsPath = getAppDataPath('/Yernemm/OWET2/settings1.json');
+    if(!fs.existsSync(settingsPath)){
+        const SettingsManager = require('./SettingsManager.js');
+        let sm = new SettingsManager();
+        fs.writeFileSync(settingsPath,JSON.stringify(sm.createDefaults()));
+        console.log(`Wrote default settings ${settingsPath}`);
+    }
+
 }
 module.exports = pathMaker;

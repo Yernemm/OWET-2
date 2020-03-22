@@ -9,7 +9,26 @@
 
     </head>
     <body>
+
+        <div id='content'></div>
+
+        <div style='text-align:center;' class='buttonContainerStatic'>
+                    <a class='button' onClick="save()">Save</a>
+         </div>
         
         <script src='../js/titlebar.js'></script>
+        <script>
+            const SettingsManager = require('../js/SettingsManager.js');
+            let sm = new SettingsManager();
+
+            document.getElementById('content').innerHTML = sm.createHtml();
+
+            const settings = require('../js/settings.js').settings;
+            for(let sett in settings){
+                for(let set in settings[sett]){
+                    document.getElementById(`${sett}-${set}`).value = settings[sett][set];
+                }    
+            }
+        </script>
     </body>
 </html>

@@ -1,0 +1,16 @@
+{
+    "settings": {
+        "owpath": {
+            "title": "Overwatch Path",
+            "desc": "Set the correct path to your Overwatch folder.",
+            "type": "text",
+            "values": [{
+                "name": "path",
+                "title": "Path",
+                "desc": "Overwatch path, including '/Overwatch/_retail_'.",
+                "default": "C:/Program Files (x86)/Overwatch/_retail_"
+            }]
+
+        }
+    }
+}

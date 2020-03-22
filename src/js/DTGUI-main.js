@@ -5,7 +5,8 @@ let DTCmd = require('./DTCmd.js');
 const {
     ipcMain
 } = require('electron');
-const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
+//const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
+const owpath = require('./settings.js').settings.owpath.path;
 const dtpath = getAppDataPath("Yernemm/OWET2/datatool");
 const outpath = getAppDataPath("Yernemm/OWET2/output/extracted");
 
@@ -70,6 +71,8 @@ ipcMain.on('DTLoaded', (event, args) => {
 
         let dtd = new DTData(dtpath, owpath);
         dtd.getInfo().then(json => {
+            sendbtns({Keyword: 'help', Description: 'Help'});
+
             ['DumpFlags', 'ListFlags', 'ExtractFlags', 'ExtractMapEnvFlags']
             .forEach(item => {
                 json.ToolGroups[item].Tools.forEach(tool => sendbtns(tool));
