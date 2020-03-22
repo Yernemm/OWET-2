@@ -126,6 +126,13 @@ let SettingsManager = require('./SettingsManager.js');
 let sm = new SettingsManager();
 console.log(JSON.stringify(sm.createDefaults()));
 
+ipcMain.on('settingsSave', (event, args)=>{
+    sm.saveSettings(args)
+    .then(()=>event.sender.send('settingsSaved', 'Settings saved. Restart OWET 2 to apply.'))
+    .catch((err)=>event.sender.send('settingsSaved', err));
+    
+});
+
 
 function runAtMain() {
 

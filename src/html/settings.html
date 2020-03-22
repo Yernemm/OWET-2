@@ -18,6 +18,7 @@
         
         <script src='../js/titlebar.js'></script>
         <script>
+            const { ipcRenderer } = require('electron');
             const SettingsManager = require('../js/SettingsManager.js');
             let sm = new SettingsManager();
 
@@ -28,6 +29,20 @@
                 for(let set in settings[sett]){
                     document.getElementById(`${sett}-${set}`).value = settings[sett][set];
                 }    
+            }
+
+            function save() {
+                let newSettings = {};
+                for(let sett in settings){
+                    newSettings[sett] = {};
+                    for(let set in settings[sett]){
+                        newSettings[sett][set] = document.getElementById(`${sett}-${set}`).value;
+                    }    
+                }
+                ipcRenderer.send('settingsSave', newSettings);
+                ipcRenderer.on('settingsSaved',(event, args)=> {
+                   alert(args); 
+                });
             }
         </script>
     </body>

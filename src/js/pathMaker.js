@@ -30,7 +30,7 @@ function pathMaker(){
     }
 
     //Create default settings.
-    const settingsPath = getAppDataPath('/Yernemm/OWET2/settings1.json');
+    const settingsPath = require('./settings.js').path;
     if(!fs.existsSync(settingsPath)){
         const SettingsManager = require('./SettingsManager.js');
         let sm = new SettingsManager();

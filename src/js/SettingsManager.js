@@ -1,4 +1,5 @@
 const opts = require('./settings-simple.json');
+const fs = require('fs');
 class SettingsManager {
     constructor(){
       
@@ -59,7 +60,16 @@ class SettingsManager {
     }
 
     saveSettings(data){
-        let settings = {...this.createDefaults(), ...data};
+        return new Promise((resolve,reject)=>{
+            let settings = {...this.createDefaults(), ...data};
+
+            fs.writeFile(require('./settings.js').path, JSON.stringify(settings), (err) => {
+                if(err)
+                    reject(err);
+                else
+                    resolve();
+            });
+        });
     }
 }
 module.exports = SettingsManager;
