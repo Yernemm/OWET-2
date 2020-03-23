@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require("electron-updater");
 const Console = require('./src/js/Console.js');
 const cc = new Console();
@@ -41,7 +41,15 @@ function createWindow () {
          e.preventDefault();
        }
     });
+
+  win.on('focus', () => win.flashFrame(false)); //Unflash when focused
+
+  ipcMain.on('flashWindow', (event, args) =>{
+    win.flashFrame(true);
+  });
+
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -69,3 +77,4 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 require('./src/js/DTGUI-main.js').runAtMain();
+

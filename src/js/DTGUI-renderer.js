@@ -35,6 +35,9 @@ setInterval(()=>{
 
 ipcRenderer.on('updateQueue', (event, args) =>{
     queueList.innerHTML = args.data;
+    if(args.data.length < 1){
+        ipcRenderer.send('flashWindow', {});
+    }
 });
 
 ipcRenderer.on('addBtn', (event, args)=> {
