@@ -1,4 +1,4 @@
-name: Build/release
+name: OWET2
 
 on: push
 
