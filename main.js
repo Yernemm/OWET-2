@@ -28,6 +28,19 @@ function createWindow () {
 
   // Open the DevTools.
   //win.webContents.openDevTools()
+
+  win.on('close', function(e){
+    var choice = require('electron').dialog.showMessageBoxSync(this,
+        {
+          type: 'question',
+          buttons: ['Yes', 'No'],
+          title: 'Confirm',
+          message: 'Are you sure you want to quit?\nAny running tasks will be stopped if you quit.'
+       });
+       if(choice == 1){
+         e.preventDefault();
+       }
+    });
 }
 
 // This method will be called when Electron has finished
