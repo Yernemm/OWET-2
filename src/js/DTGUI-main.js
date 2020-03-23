@@ -133,6 +133,12 @@ ipcMain.on('settingsSave', (event, args)=>{
     
 });
 
+const packageJson = require('./../../package.json');
+console.log(packageJson.version);
+ipcMain.on('mainMenuLoaded', (event, args)=>{
+    event.sender.send('mainMenuSetVersion', packageJson.version)   
+});
+
 
 function runAtMain() {
 
