@@ -42,7 +42,7 @@ ipcRenderer.on('updateQueue', (event, args) =>{
 
 ipcRenderer.on('addBtn', (event, args)=> {
     let btnDiv = document.createElement('div');
-    btnDiv.className = 'buttonContainerStatic';
+    btnDiv.className = 'buttonContainerStatic tooltip';
 
     let btnAnchor = document.createElement('a');
     btnAnchor.className = 'button';
@@ -50,6 +50,12 @@ ipcRenderer.on('addBtn', (event, args)=> {
     btnAnchor.innerHTML = args.text;
 
     btnDiv.appendChild(btnAnchor);
+
+    let btnTooltip = document.createElement('span');
+    btnTooltip.className = 'tooltiptext';
+    btnTooltip.innerHTML = args.cmd;
+
+    btnDiv.appendChild(btnTooltip);
 
     btnContainer.appendChild(btnDiv);
 
