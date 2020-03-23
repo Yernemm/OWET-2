@@ -1,4 +1,4 @@
-# Overwatch Extraction Toolkit 2
+# Overwatch Extraction Toolkit 2 ![OWET2](https://github.com/Yernemm/OWET-2/workflows/OWET2/badge.svg)
 
 Work-in-progress.
 
