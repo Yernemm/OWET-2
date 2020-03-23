@@ -1,9 +1,12 @@
 const { app, BrowserWindow } = require('electron');
+const { autoUpdater } = require("electron-updater");
 const Console = require('./src/js/Console.js');
 const cc = new Console();
 const pathMaker = require('./src/js/pathMaker.js');
 pathMaker();
 //cc.run();
+
+autoUpdater.checkForUpdatesAndNotify();
 
 function createWindow () {
   // Create the browser window.
