@@ -1,4 +1,4 @@
-const opts = require('./settings-simple.json');
+const opts = require('./settings.json');
 const fs = require('fs');
 class SettingsManager {
     constructor(){
@@ -11,7 +11,14 @@ class SettingsManager {
             let vals = [];
             for(let val in opts.settings[set].values){
                 if(opts.settings[set].values[val].default === true){
-                    vals.push({'value': opts.settings[set].values[val].name});
+                    if(opts.settings[set].type === 'check'){
+                        vals.push({'value': true});
+                    }else{
+                        vals.push({'value': opts.settings[set].values[val].name});
+                    }
+                    
+                }else if(opts.settings[set].values[val].default === false && opts.settings[set].type === 'check'){
+                    vals.push({'value': false});
                 }else if(opts.settings[set].values[val].default !== undefined){
                     let temp = {};
                     temp[opts.settings[set].values[val].name] = opts.settings[set].values[val].default;
@@ -34,18 +41,37 @@ class SettingsManager {
         for(let sett in opts.settings){
             let set = opts.settings[sett];
 
-            html+=`<div id='${sett}'`;
+            html+=`<div id='${sett}' class='${set.type}'`;
 
-                html+=`<p><b>${set.title}</b><br>${set.desc}</p><form>`
+                html+=`<p><b>${set.title}</b><br>${set.desc}</p><form id='form-${sett}'>`
 
                 switch (set.type) {
                     case 'text':
 
                     set.values.forEach(val => {
                         html+=`${val.desc}<br><label for="${sett}-${val.name}">${val.title}:</label>
-                    <input id="${sett}-${val.name}" type="text" /><br>`
+                    <input id="${sett}-${val.name}" name="${sett}-${val.name}" type="text" /><br>`
                     });
                         
+                        break;
+
+                    case 'radio':
+
+                        set.values.forEach(val=>{
+                            html+=`<p><input type="radio" id="${sett}-${val.name}" name="${sett}" value="${val.name}">
+                    <label for="${sett}-${val.name}">${val.title}</label><br>${val.desc}</p>`
+                        });
+                        
+
+                        break;
+
+                    case 'check':
+
+                        set.values.forEach(val=>{
+                            html+=`<p><input type="checkbox" id="${sett}-${val.name}" name="${sett}" value="${val.name}">
+                    <label for="${sett}-${val.name}">${val.title}</label><br>${val.desc}</p>`
+                        });
+
                         break;
                 
                     default:

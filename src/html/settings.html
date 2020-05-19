@@ -26,12 +26,30 @@
 
             const settings = require('../js/settings.js').settings;
             for(let sett in settings){
+                
                 for(let set in settings[sett]){
-                    document.getElementById(`${sett}-${set}`).value = settings[sett][set];
+                    try {
+                        document.getElementById(`${sett}-${set}`).value = settings[sett][set];
+                    } catch (error) {
+                        
+                    }
+                    
                 }    
             }
 
+          
+
             function save() {
+                for(let sett in settings){
+                let formData = new FormData(document.getElementById('form-' + sett));
+                
+                let object = {};
+                    formData.forEach(function(value, key){
+                object[key] = value;
+                });
+                console.log(object);
+            }
+
                 let newSettings = {};
                 for(let sett in settings){
                     newSettings[sett] = {};

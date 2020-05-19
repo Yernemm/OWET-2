@@ -37,6 +37,16 @@
             }]
 
         },
+        "downloaddt": {
+            "title": "Download DataTool",
+            "desc": "Force download DataTool.",
+            "type": "button",
+            "values": [{
+                "name": "force",
+                "title": "Force download",
+                "desc": "OWET2 will download the latest version of DataTool and overwrite the previous version."
+            }]
+        },
         "owpath": {
             "title": "Overwatch Path",
             "desc": "Set the correct path to your Overwatch folder.",
