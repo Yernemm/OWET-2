@@ -1,22 +1,31 @@
 #mainWindow {
     position: absolute;
-    background-color: red;
-    height: 80%;
+    left: 0;
+    height: calc(80% - 20px);
     width: 75%;
 }
 
-#queue {
+#queueWindow {
     position: absolute;
-    background-color: green;
-    height: 80%;
-    width: 25%;
+  
+    height: calc(80% - 20px);
+    width: calc(25% - 20px);
     right: 0;
 }
 
-#console {
+#consoleWindow {
     position: absolute;
-    background-color: blue;
+    left: 0;
+    right: 0;
     height: 20%;
     width: 100%;
     bottom: 0;
+}
+
+#mainWindow, #queueWindow, #consoleWindow {
+    padding: 4px;
+}
+
+.consolewiz {
+    height: 95%;
 }
