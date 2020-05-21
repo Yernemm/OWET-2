@@ -4,10 +4,11 @@ const Console = require('./Console.js');
  */
 class DTCmd {
 
-    constructor(fullCmd, cmdName) {
+    constructor(fullCmd, cmdName, args = "") {
         this.cmd = fullCmd;
         this.cmdName = cmdName;
         this.console = new Console();
+        this.args = args;
     }
 
     run(onData = () => {}) {

@@ -114,7 +114,7 @@ function queueHtml() {
         }
         h +=
             `       <div class='buttonContainerStatic buttonContainerQueue tooltip'>
-                    <a class='button' onClick="removeQueue(${id})">${cmd.cmdName}</a>
+                    <a class='button' onClick="removeQueue(${id})">${cmd.cmdName} ${cmd.args}</a>
                     <span class="tooltiptext">${cmd.cmd.split('& ')[1]}</span>
                 </div>  
         `;

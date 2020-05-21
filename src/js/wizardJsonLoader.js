@@ -25,7 +25,7 @@ function generateHtml(json){
     html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes </span><span class="extractIcon buttonContainerSmall"><a class='button' onClick="cmdBtn('extract-unlocks', '*')">[ Extract All ]</a></span><hr />`;
     html += `<ul class="nested">`;
     json.Types["datatool.ux.valid_hero_names"].Choices.forEach(hero=>{
-        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${hero.DisplayName} </span><span class="extractIcon buttonContainerSmall">
+        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> [${hero.QueryName}] ${hero.DisplayName} </span><span class="extractIcon buttonContainerSmall">
         <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}')">[ Extract All ]</a>
         </span><hr />`;
         html += `<ul class="nested">`;

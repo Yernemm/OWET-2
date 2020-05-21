@@ -17,7 +17,7 @@ class DTWrapper {
             fullcmd += "cd \"" + this.dtPath + "\" & datatool help";
         else
             fullcmd += "cd \"" + this.dtPath + `" & datatool ${flags} "` + this.owPath + "\" " + cmd + ` "${this.outPath}" ${args}`;
-        this.cmdQueue.push(new DTCmd(fullcmd, cmd));
+        this.cmdQueue.push(new DTCmd(fullcmd, cmd, args));
     }
 
     removeFromQueue(id){
