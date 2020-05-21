@@ -22,21 +22,21 @@ function generateHtml(json){
     let html = '';
 
     //Heroes
-    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes <span class="extractIcon"><a class='button' onClick="cmdBtn('extract-unlocks', '*')">[ Extract All ]</a></span></span><hr />`;
+    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes </span><span class="extractIcon buttonContainerSmall"><a class='button' onClick="cmdBtn('extract-unlocks', '*')">[ Extract All ]</a></span><hr />`;
     html += `<ul class="nested">`;
     json.Types["datatool.ux.valid_hero_names"].Choices.forEach(hero=>{
-        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${hero.DisplayName} <span class="extractIcon">
+        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${hero.DisplayName} </span><span class="extractIcon buttonContainerSmall">
         <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}')">[ Extract All ]</a>
-        </span></span><hr />`;
+        </span><hr />`;
         html += `<ul class="nested">`;
             for(let type in hero.Children.Types){
-                html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${displayDict(type)} <span class="extractIcon">
+                html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${displayDict(type)} </span><span class="extractIcon buttonContainerSmall">
                 <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=*')">[ Extract All ]</a>
-                </span></span><hr />`;
+                </span><hr />`;
                 html += `<ul class="nested">`;
                 console.log(hero.DisplayName + " " + type);
                 hero.Children.Types[type].Choices.forEach(choice=>{
-                        html += `<li>${choice.DisplayName}<span class="extractIcon">
+                        html += `<li>${choice.DisplayName}<span class="extractIcon buttonContainerSmall">
                         <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=${choice.QueryName}')">[ Extract ]</a>
                         </span></li><hr />`;
                     });
@@ -47,18 +47,26 @@ function generateHtml(json){
     html += `</ul>`;
 
     //NPCs
-    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> NPCs </span><hr />`;
+    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> NPCs </span><span class="extractIcon buttonContainerSmall">
+    <a class='button' onClick="cmdBtn('extract-npcs', '*')">[ Extract All ]</a>
+    </span><hr />`;
     html += `<ul class="nested">`;
     json.Types["datatool.ux.valid_npc_names"].Choices.forEach(npc=>{
-        html += `<li>[${npc.QueryName}] ${npc.DisplayName}<hr /></li>`;
+        html += `<li>[${npc.QueryName}] ${npc.DisplayName}<span class="extractIcon buttonContainerSmall">
+        <a class='button' onClick="cmdBtn('extract-npcs', '${npc.QueryName}')">[ Extract ]</a>
+        </span><hr /></li>`;
     });
     html += `</ul>`;
 
     //Maps
-    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Maps </span><hr />`;
+    html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Maps </span><span class="extractIcon buttonContainerSmall">
+    <a class='button' onClick="cmdBtn('extract-maps', '*')">[ Extract All ]</a>
+     </span><hr />`;
     html += `<ul class="nested">`;
     json.Types["datatool.ux.valid_map_names"].Choices.forEach(map=>{
-        html += `<li>[${map.QueryName}] ${map.DisplayName}<hr /></li>`;
+        html += `<li>[${map.QueryName}] ${map.DisplayName} <span class="extractIcon buttonContainerSmall">
+        <a class='button' onClick="cmdBtn('extract-maps', '${map.QueryName}')">[ Extract ]</a>
+        </span><hr /></li>`;
     });
     html += `</ul>`;
 
