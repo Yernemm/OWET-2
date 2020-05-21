@@ -14,98 +14,39 @@
         <div id='mainWindow'>
             <div class="dtInnerColumn" style="width: 100%;height: 100%;">
             
-            <ul id="selectrolList">
-                <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                  <ul class="nested">
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Ana <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Brigitte <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                      <ul class="nested">
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Abilities <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Emotes <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Skins  <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                          <ul class="nested">
-                            <li>Classic <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Carbon Fiber <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Ironclad <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Riot Police <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                          </ul>
-                        </li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Sprays</span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Voice lines</span></li>
-                      </ul>
-                    </li>  
-                  </ul>
-                  <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Maps</span></li>
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Other</span></li>
-                </li>
+            <ul id="selectorList">
+               
               </ul>
             </div>
         </div>
   
         <div id='queueWindow'>
-            <div class="dtInnerColumn" style="width: 95%; height: 100%;">
-                <p>Queue: </p>
-                <div class='buttonContainerQueue'><a class='button' >Brigitte - Skins - Riot Police</a></div>
+            <div class="dtInnerColumn" style="width: 95%; height: 100%;" id="queueList">
+                
             </div>
         </div>
         <div id='consoleWindow'>
             <div id='consoleWrapper' class='dtInnerColumn' style="width: 97%; height: 97%;margin-right: 1%;">
 
                 <textarea readonly class="console consolewiz" id="console">
-                    some
-                    log
-here
-                    is
-being
-                    logged
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-e
-                    is
-being
-                    logged
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-
-e
-                    is
-being
-                    logged
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
-[log] loglogloglog
                 </textarea>
             </div>
         </div>
 
         <script src='../js/titlebar.js'></script>
-        <script src='../js/DTGUI-renderer.js'></script>
+
+        <script src="../js/wizardJsonLoader.js"></script>
         <script>
-            var toggler = document.getElementsByClassName("caret");
-            var i;
-            
-            for (i = 0; i < toggler.length; i++) {
-              toggler[i].addEventListener("click", function() {
-                this.parentElement.querySelector(".nested").classList.toggle("active");
-                this.classList.toggle("caret-down");
-              });
-            }
-            </script>
+          var toggler = document.getElementsByClassName("caret");
+          var i;
+          
+          for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function() {
+              this.parentElement.querySelector(".nested").classList.toggle("active");
+              this.classList.toggle("caret-down");
+            });
+          }
+          </script>
+          <script src="../js/wizardClient.js"></script>
     </body>
 </html>

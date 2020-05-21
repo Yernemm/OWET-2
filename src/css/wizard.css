@@ -79,3 +79,12 @@ ul, #selectrolList {
       right: 0;
       transform: translate(0px, -30px);
   }
+
+  .extractIcon {
+    float: right;
+  }
+
+  #mainWindow hr{
+    border: none;
+    border-top: 1px solid #235f91;
+  }

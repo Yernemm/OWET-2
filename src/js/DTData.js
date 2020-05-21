@@ -13,7 +13,7 @@ class DTData {
         return new Promise((resolve, reject) => {
 
             let c = new Console();
-            let cmd = `cd "${this.dtPath}" & datatool "${this.owPath}" util-tool-info`;
+            let cmd = `cd "${this.dtPath}" & datatool.exe "${this.owPath}" util-tool-info`;
             let data = '';
             let i = 0;
             c.run(cmd, (out, err) => {

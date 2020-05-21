@@ -12,11 +12,11 @@ class DTWrapper {
     }
 
     addToQueue(cmd, flags, args){
-        let fullcmd = '';
+        let fullcmd = this.dtPath.split(':')[0] + ": & ";
         if(cmd == 'help')
-            fullcmd = "cd \"" + this.dtPath + "\" & datatool help";
+            fullcmd += "cd \"" + this.dtPath + "\" & datatool help";
         else
-            fullcmd = "cd \"" + this.dtPath + `" & datatool ${flags} "` + this.owPath + "\" " + cmd + ` "${this.outPath}" ${args}`;
+            fullcmd += "cd \"" + this.dtPath + `" & datatool ${flags} "` + this.owPath + "\" " + cmd + ` "${this.outPath}" ${args}`;
         this.cmdQueue.push(new DTCmd(fullcmd, cmd));
     }
 
