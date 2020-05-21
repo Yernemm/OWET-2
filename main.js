@@ -27,7 +27,7 @@ function createWindow () {
   win.removeMenu();
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   win.on('close', function(e){
     var choice = require('electron').dialog.showMessageBoxSync(this,
