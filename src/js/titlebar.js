@@ -43,6 +43,10 @@ menu.append(new MenuItem({
             click: () => document.location.href = "./../html/mainmenu.html"
         },
         {
+            label: 'Item Browser',
+            click: () => document.location.href = "./../html/wizard.html"
+        },
+        {
             label: 'DataTool GUI',
             click: () => document.location.href = "./../html/datatoolgui.html"
         },
