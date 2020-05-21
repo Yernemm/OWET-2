@@ -4,7 +4,7 @@ function cmdBtn(cmd, args) {
     ipcRenderer.send('runConsoleCmd', {
         cmd: cmd, 
         flags: "",
-        args: args 
+        args: `"${args}"` 
     });
     
 

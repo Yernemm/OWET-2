@@ -25,14 +25,20 @@ function generateHtml(json){
     html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes <span class="extractIcon"><a class='button' onClick="cmdBtn('extract-unlocks', '*')">[ Extract All ]</a></span></span><hr />`;
     html += `<ul class="nested">`;
     json.Types["datatool.ux.valid_hero_names"].Choices.forEach(hero=>{
-        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${hero.DisplayName} <span class="extractIcon">[ Extract All ]</span></span><hr />`;
+        html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${hero.DisplayName} <span class="extractIcon">
+        <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}')">[ Extract All ]</a>
+        </span></span><hr />`;
         html += `<ul class="nested">`;
             for(let type in hero.Children.Types){
-                html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${displayDict(type)} <span class="extractIcon">[ Extract All ]</span></span><hr />`;
+                html += `<li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> ${displayDict(type)} <span class="extractIcon">
+                <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=*')">[ Extract All ]</a>
+                </span></span><hr />`;
                 html += `<ul class="nested">`;
                 console.log(hero.DisplayName + " " + type);
                 hero.Children.Types[type].Choices.forEach(choice=>{
-                        html += `<li>${choice.DisplayName}<span class="extractIcon">[ Extract ]</span></li><hr />`;
+                        html += `<li>${choice.DisplayName}<span class="extractIcon">
+                        <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=${choice.QueryName}')">[ Extract ]</a>
+                        </span></li><hr />`;
                     });
                 html += `</ul>`;
             }
@@ -82,6 +88,20 @@ const displayDictList = {
     "datatool.ux.valid_icon_names": "Icons",
     "datatool.ux.valid_emote_names": "Emotes",
     "datatool.ux.valid_victorypose_names": "Victory Poses",
+    "datatool.ux.valid_highlightintro_names": "Highlight Intros",
+    "datatool.ux.valid_voiceline_names": "Voice Lines",
+    "datatool.ux.valid_skin_names": "Skins",
+    "datatool.ux.valid_spray_names": "Sprays",
+    "datatool.ux.valid_weaponskin_names": "Weapon Skins",
+    "datatool.ux.valid_npc_names": "NPCs",
+    "datatool.ux.valid_owl_teams": "Overwatch League Teams",
+    "datatool.ux.valid_map_names": "Maps"
+}
+
+const displayDictListforCmd = {
+    "datatool.ux.valid_icon_names": "icon",
+    "datatool.ux.valid_emote_names": "emote",
+    "datatool.ux.valid_victorypose_names": "victorypose",
     "datatool.ux.valid_highlightintro_names": "Highlight Intros",
     "datatool.ux.valid_voiceline_names": "Voice Lines",
     "datatool.ux.valid_skin_names": "Skins",
