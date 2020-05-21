@@ -1,0 +1,22 @@
+#mainWindow {
+    position: absolute;
+    background-color: red;
+    height: 80%;
+    width: 75%;
+}
+
+#queue {
+    position: absolute;
+    background-color: green;
+    height: 80%;
+    width: 25%;
+    right: 0;
+}
+
+#console {
+    position: absolute;
+    background-color: blue;
+    height: 20%;
+    width: 100%;
+    bottom: 0;
+}
