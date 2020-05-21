@@ -21,6 +21,7 @@ function createWindow () {
     frame: false
   })
 
+
   
   // and load the index.html of the app.
   win.loadFile('./src/html/mainmenu.html');
