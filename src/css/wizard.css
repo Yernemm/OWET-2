@@ -29,3 +29,53 @@
 .consolewiz {
     height: 95%;
 }
+
+.arrowImg {
+    width: 20px;
+    height: 20px;
+}
+
+ul, #selectrolList {
+    list-style-type: none;
+  }
+  
+  #selectrolList {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+  
+  .caret::before {
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  .caret-down img{
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);  
+  }
+  
+  .nested {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
+
+  .extractBtn {
+      display: block;
+      position: absolute;
+      height: 20px;
+      float: right;
+      right: 0;
+      transform: translate(0px, -30px);
+  }
