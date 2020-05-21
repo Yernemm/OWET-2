@@ -1,5 +1,4 @@
 //Run client-side.
-const { ipcRenderer } = require('electron');
 function cmdBtn(cmd) {
     console.log('runnin')
     ipcRenderer.send('runConsoleCmd', {

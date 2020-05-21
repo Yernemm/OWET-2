@@ -3,7 +3,7 @@ let getAppDataPath = require("appdata-path");
 let DTWrapper = require("./DTWrapper.js");
 let DTCmd = require('./DTCmd.js');
 const {
-    ipcMain
+    ipcMain, app
 } = require('electron');
 //const owpath = "C:/Program Files (x86)/Overwatch/_retail_";
 const owpath = require('./settings.js').settings.owpath.path;
@@ -135,6 +135,7 @@ ipcMain.on('settingsSave', (event, args)=>{
 
 const packageJson = require('./../../package.json');
 console.log(packageJson.version);
+
 ipcMain.on('mainMenuLoaded', (event, args)=>{
     console.log('e')
     event.sender.send('mainMenuSetVersion', packageJson.version)   
@@ -146,6 +147,26 @@ function runAtMain() {
 }
 
 //logStream.end();
+
+ipcMain.on('ClearCache', (event, args) => { 
+    
+    try {
+        fs.unlinkSync(getAppDataPath("Yernemm/OWET2/cache/toolinfo.json"));
+    } catch (error) {
+        
+    }
+
+    try {
+        fs.unlinkSync(getAppDataPath("Yernemm/OWET2/cache/toolinfoChoices.json"));
+    } catch (error) {
+        
+    }
+
+
+    app.relaunch();
+    app.exit();
+
+ });
 
 module.exports = {
     runAtMain

@@ -77,4 +77,4 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 require('./src/js/DTGUI-main.js').runAtMain();
-
+require('./src/js/wizard-main.js').runAtMain();

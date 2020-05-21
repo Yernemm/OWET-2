@@ -1,5 +1,5 @@
 const fs = require('fs');
-const jsonFile = require("./../../temp/dynamicChoices.json");
+let jsonFile = {'Error': 'error'};
 
 function loadJson(){
     return new Promise((resolve, reject)=>{
@@ -37,7 +37,7 @@ function generateHtml(json){
                 console.log(hero.DisplayName + " " + type);
                 hero.Children.Types[type].Choices.forEach(choice=>{
                         html += `<li>${choice.DisplayName}<span class="extractIcon buttonContainerSmall">
-                        <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=${choice.QueryName}')">[ Extract ]</a>
+                        <a class='button' onClick="cmdBtn('extract-unlocks', '${hero.QueryName}|${/(?<=datatool.ux.valid_)(.*)(?=_names)/.exec(type)[0]}=${choice.QueryName.replace(/'/g, `${"\\"}'`)}')">[ Extract ]</a>
                         </span></li><hr />`;
                     });
                 html += `</ul>`;
@@ -82,10 +82,12 @@ function setHtml(){
     console.log("uh");
     parseHtml().then(html=>{
         document.getElementById('selectorList').innerHTML = html;
+
+        clickyMenuItems();
     }) 
 }
 
-setHtml();
+
 
 function displayDict(text){
     return displayDictList[text] === undefined ? text : displayDictList[text];
@@ -120,30 +122,28 @@ const displayDictListforCmd = {
     "datatool.ux.valid_map_names": "Maps"
 }
 
-/*
-example
 
- <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Heroes <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                  <ul class="nested">
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Ana <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Brigitte <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                      <ul class="nested">
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Abilities <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Emotes <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Skins  <div class='buttonContainerSmall extractBtn'><a class='button' >Extract All</a></div></span>
-                          <ul class="nested">
-                            <li>Classic <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Carbon Fiber <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Ironclad <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                            <li>Riot Police <div class='buttonContainerSmall extractBtn'><a class='button' >Extract</a></div></li>
-                          </ul>
-                        </li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Sprays</span></li>
-                        <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Voice lines</span></li>
-                      </ul>
-                    </li>  
-                  </ul>
-                  <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Maps</span></li>
-                    <li><span class="caret"><img src='./../img/arrow.png' class="arrowImg" /> Other</span></li>
-                </li>
-*/
+ipcRenderer.send('WizardNeedJSON',{});
+
+ipcRenderer.on('WizardSendingJSON', (event, args) =>{
+
+    jsonFile = args;
+    setHtml();
+
+
+
+});
+
+function clickyMenuItems(){
+        //Set the js for clicking on the menu options
+
+        let toggler = document.getElementsByClassName("caret");
+        let i;
+        
+        for (i = 0; i < toggler.length; i++) {
+          toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+          });
+        }
+}

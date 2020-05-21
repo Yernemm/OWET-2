@@ -12,7 +12,10 @@ class Downloader
     }
 
     download(progressTick = () => {}){
+
         return new Promise((resolve, reject) => {
+            
+
             let req = request({
                 method: 'GET',
                 uri: this.url
@@ -34,6 +37,9 @@ class Downloader
             
 
             req.on('end', ()=>{
+                
+                
+                
                 resolve();
             });
 

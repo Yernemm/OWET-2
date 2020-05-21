@@ -1,4 +1,3 @@
-const { ipcRenderer } = require('electron');
 function cmdBtn(cmd, args) {
     console.log('runnin');
     ipcRenderer.send('runConsoleCmd', {

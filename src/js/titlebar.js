@@ -1,5 +1,6 @@
-const { Menu, MenuItem } = require('electron').remote
-            const customTitlebar = require('custom-electron-titlebar');
+const { Menu, MenuItem } = require('electron').remote;
+const customTitlebar = require('custom-electron-titlebar');
+const { ipcRenderer } = require('electron');
  
  let titlebar = new customTitlebar.Titlebar({
      backgroundColor: customTitlebar.Color.fromHex('#353638'),
@@ -58,6 +59,28 @@ menu.append(new MenuItem({
 
     ]
 }));
+
+menu.append(new MenuItem({
+    label: 'More',
+    submenu: [
+        {
+            label: 'Open Output Folder',
+            click: () => ipcRenderer.send('DtOpenOutputFolder',{})
+        },
+        {
+            label: 'Open Current Log',
+            click: () => ipcRenderer.send('DtOpenCurrentLog',{})
+        },
+        {
+            label: 'Clear DataTool Cache',
+            click: () => ipcRenderer.send('ClearCache',{})
+        },
+
+
+    ]
+}));
+
+
 
 /*
 

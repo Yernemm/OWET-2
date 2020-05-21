@@ -31,7 +31,6 @@
         <p style='position:fixed;right:10px;bottom:0;'>v<span id="version-number"></span> ALPHA</p>
         <script src='../js/titlebar.js'></script>
         <script>
-            const { ipcRenderer } = require('electron');
             ipcRenderer.send('mainMenuLoaded');
             ipcRenderer.on('mainMenuSetVersion', (event,args)=>{
                 document.getElementById('version-number').innerHTML = args;

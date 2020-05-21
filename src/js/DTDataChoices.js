@@ -2,7 +2,7 @@ const Console = require('./Console.js');
 const fs = require("fs");
 const getAppDataPath = require("appdata-path");
 
-class DTData {
+class DTDataChoices {
 
     constructor(dtPath, owPath) {
         this.dtPath = dtPath;
@@ -13,7 +13,7 @@ class DTData {
         return new Promise((resolve, reject) => {
 
             let c = new Console();
-            let cmd = `${this.dtPath.split(':')[0]}: & cd "${this.dtPath}" & datatool.exe "${this.owPath}" util-tool-info`;
+            let cmd = `${this.dtPath.split(':')[0]}: & cd "${this.dtPath}" & datatool.exe "${this.owPath}" util-dynamic-choices`;
             let data = '';
             let i = 0;
             c.run(cmd, (out, err) => {
@@ -37,16 +37,16 @@ class DTData {
     generateAndCache() {
         return new Promise((resolve, reject) => {
             this.generateToolInfo().then(data => {
-                fs.writeFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", JSON.stringify(data), resolve);
+                fs.writeFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfoChoices.json", JSON.stringify(data), resolve);
             });
         });
     }
 
     getFromCache() {
         return new Promise((resolve, reject) => {
-            if(fs.existsSync(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json")){
+            if(fs.existsSync(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfoChoices.json")){
 
-                fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfo.json", 'utf8', (err, data) => {
+                fs.readFile(getAppDataPath("Yernemm/OWET2/cache/") + "toolinfoChoices.json", 'utf8', (err, data) => {
                     if (data)
                         resolve(JSON.parse(data));
                     else
@@ -80,4 +80,4 @@ class DTData {
 
 }
 
-module.exports = DTData;
+module.exports = DTDataChoices;
